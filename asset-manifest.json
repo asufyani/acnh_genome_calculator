@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/acnh_genome_calculator/static/css/main.41f2ce72.chunk.css",
-    "main.js": "/acnh_genome_calculator/static/js/main.5f98b488.chunk.js",
-    "main.js.map": "/acnh_genome_calculator/static/js/main.5f98b488.chunk.js.map",
+    "main.css": "/acnh_genome_calculator/static/css/main.6537aabd.chunk.css",
+    "main.js": "/acnh_genome_calculator/static/js/main.abfb335e.chunk.js",
+    "main.js.map": "/acnh_genome_calculator/static/js/main.abfb335e.chunk.js.map",
     "runtime-main.js": "/acnh_genome_calculator/static/js/runtime-main.b9f1097c.js",
     "runtime-main.js.map": "/acnh_genome_calculator/static/js/runtime-main.b9f1097c.js.map",
-    "static/js/2.2df1cc90.chunk.js": "/acnh_genome_calculator/static/js/2.2df1cc90.chunk.js",
-    "static/js/2.2df1cc90.chunk.js.map": "/acnh_genome_calculator/static/js/2.2df1cc90.chunk.js.map",
+    "static/js/2.ca64947d.chunk.js": "/acnh_genome_calculator/static/js/2.ca64947d.chunk.js",
+    "static/js/2.ca64947d.chunk.js.map": "/acnh_genome_calculator/static/js/2.ca64947d.chunk.js.map",
     "index.html": "/acnh_genome_calculator/index.html",
-    "precache-manifest.d7cb9c82261a0d029b1f8e269ce9bc8c.js": "/acnh_genome_calculator/precache-manifest.d7cb9c82261a0d029b1f8e269ce9bc8c.js",
+    "precache-manifest.7fd9ff7fa55b06450ee6d1b52badb225.js": "/acnh_genome_calculator/precache-manifest.7fd9ff7fa55b06450ee6d1b52badb225.js",
     "service-worker.js": "/acnh_genome_calculator/service-worker.js",
-    "static/css/main.41f2ce72.chunk.css.map": "/acnh_genome_calculator/static/css/main.41f2ce72.chunk.css.map",
-    "static/js/2.2df1cc90.chunk.js.LICENSE.txt": "/acnh_genome_calculator/static/js/2.2df1cc90.chunk.js.LICENSE.txt"
+    "static/css/main.6537aabd.chunk.css.map": "/acnh_genome_calculator/static/css/main.6537aabd.chunk.css.map",
+    "static/js/2.ca64947d.chunk.js.LICENSE.txt": "/acnh_genome_calculator/static/js/2.ca64947d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b9f1097c.js",
-    "static/js/2.2df1cc90.chunk.js",
-    "static/css/main.41f2ce72.chunk.css",
-    "static/js/main.5f98b488.chunk.js"
+    "static/js/2.ca64947d.chunk.js",
+    "static/css/main.6537aabd.chunk.css",
+    "static/js/main.abfb335e.chunk.js"
   ]
 }
