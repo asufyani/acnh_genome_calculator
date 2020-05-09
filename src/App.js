@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { possibleGenomes } from './utils';
+import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
 import { Button, FormControl, InputLabel, TextField, Select, MenuItem, Grid } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
