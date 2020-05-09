@@ -25,8 +25,8 @@ const memoGeneCombos = {
   function parseGenomeSet(genomeSet, species) {
     const genomes = genomeSet.split(',');
     let splitGenes = [];
-    genomes.forEach(genome => {
-      genome.trim();
+    genomes.forEach(rawGenome => {
+      const genome = rawGenome.trim();
       const split_match = split_binary.exec(genome);
       if (split_match && split_match[1]) {
         splitGenes.push(genome.split(split_match[1]));
