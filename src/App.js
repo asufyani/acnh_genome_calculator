@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
-import { Button, FormControl, InputLabel, TextField, Select, MenuItem, Grid } from '@material-ui/core';
+import { Switch, Button, FormControl, FormLabel, InputLabel, TextField, Select, MenuItem, Grid, Typography } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import * as data from './flowers';
 import './App.css';
@@ -30,8 +30,12 @@ function App() {
   const [parent2, setParent2] = useState('');
   const [res, setRes] = useState([]);
   const [species, setSpecies] = useState('');
+  const [genomeFormatCondensed, setGenomeFormatCondensed] = useState(false);
   const classes = useStyles();
   const flowerData = data.default.flowers;
+  function handleSwitch(event) {
+    setGenomeFormatCondensed(!genomeFormatCondensed);
+  };
   return (
     <>
       <div className="App">
@@ -50,37 +54,50 @@ function App() {
                     <TextField label="Parent 2" value={parent2} onChange={event => setParent2(event.target.value)} />
                   </Grid>
                   <Grid item xs>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel shrink id="species-select-label">
-                      Species
+                    <FormControl className={classes.formControl}>
+                      <InputLabel shrink id="species-select-label">
+                        Species
                     </InputLabel>
-                    <Select
-                      labelId="species-select-label"
-                      id="species-select"
-                      value={species}
-                      onChange={event => { setSpecies(event.target.value); setRes([]); }}
-                      displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      {
-                        Object.keys(flowerData).map(species => {
-                          return <MenuItem key={species} value={species}>{species}</MenuItem>
-                        })
-                      }
-                    </Select>
-                  </FormControl>
+                      <Select
+                        labelId="species-select-label"
+                        id="species-select"
+                        value={species}
+                        onChange={event => { setSpecies(event.target.value); setRes([]); }}
+                        displayEmpty
+                        className={classes.selectEmpty}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        {
+                          Object.keys(flowerData).map(species => {
+                            return <MenuItem key={species} value={species}>{species}</MenuItem>
+                          })
+                        }
+                      </Select>
+                    </FormControl>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
-
                 <Grid container justify="center">
+                  <Grid item xs={12}>
+                    <FormControl>
+                      <FormLabel component="legend">Genome Format</FormLabel>
+
+                      <Typography component="div">
+                        <Grid component="label" container alignItems="center" spacing={1}>
+                          <Grid item>Binary</Grid>
+                          <Grid item>
+                            <Switch color="primary" checked={genomeFormatCondensed} onChange={handleSwitch} name="genomeFormat" />
+                          </Grid>
+                          <Grid item>Condensed</Grid>
+                        </Grid>
+                      </Typography>
+                    </FormControl>
+                  </Grid>
                   <Grid item>
                     <Button variant="contained" color="primary" disabled={!species} onClick={event => { setRes(possibleGenomes(parent1, parent2, species)) }}>Calculate</Button>
-
                   </Grid>
                 </Grid>
               </Grid>
@@ -93,18 +110,18 @@ function App() {
       </div>
 
 
-        <Grid container className="resultsContainer" spacing={3} alignItems="center" alignContent="center" justify="center">
-          <Grid item xs={10}>
-            <Grid container spacing={3} alignItems="flex-start" alignContent="center" justify="center">
-              {res.map(result => (
-                <Grid item xs={4} key={result.parents}>
-                  <Scenario key={result.parents} parents={result.parents} offspring={result.offspring} species={species} />
-                </Grid>
-              ))}
-            </Grid>
-
+      <Grid container className="resultsContainer" spacing={3} alignItems="center" alignContent="center" justify="center">
+        <Grid item xs={10}>
+          <Grid container spacing={3} alignItems="flex-start" alignContent="center" justify="center">
+            {res.map(result => (
+              <Grid item xs={4} key={result.parents}>
+                <Scenario key={result.parents} parents={result.parents} offspring={result.offspring} species={species} genomeFormatCondensed={genomeFormatCondensed} />
+              </Grid>
+            ))}
           </Grid>
+
         </Grid>
+      </Grid>
 
     </>
   );

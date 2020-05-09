@@ -1,11 +1,15 @@
 import React from 'react';
-import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles, createStyles, Theme, Table, TableBody } from '@material-ui/core';
+import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles, createStyles, Theme, Table, TableBody, Chip, Typography } from '@material-ui/core';
 import { Offspring, Order } from './types';
 import { stableSort, getComparator } from './tableUtils';
 type SortableKey = "genome" | "probability" | "color";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    offspringChip: {
+      width: '100%',
+      border: '1px solid black'
+    },
     root: {
       width: '100%',
     },
@@ -85,37 +89,40 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 }
 
 export interface OffspringTableProps {
-    offspring: Offspring[]
+  offspring: Offspring[],
+  genomeFormatCondensed: boolean,
 }
 
-export const OffspringTable = ({offspring} : OffspringTableProps) => {
-    const classes = useStyles();
-    const [order, setOrder] = React.useState<Order>('asc');
-    const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');
-    const handleRequestSort = (event: React.MouseEvent<unknown>, property: SortableKey) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-      };
-    return (
-        <Table size='small'>
-          <EnhancedTableHead
-            classes={classes}
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-          />
-          <TableBody>
-            {
-              stableSort(offspring, getComparator(order, orderBy)).map(possibleOffspring => {
-                return <TableRow key={possibleOffspring.genome}>
-                  <TableCell align='left'>{possibleOffspring.genome}</TableCell>
-                  <TableCell align='left' style={{ backgroundColor: possibleOffspring.backgroundColor }}>{possibleOffspring.color}</TableCell>
-                  <TableCell align='left'>{possibleOffspring.probability * 100 + '%'}</TableCell>
-                </TableRow>
-              })}
-          </TableBody>
+export const OffspringTable = ({ offspring, genomeFormatCondensed }: OffspringTableProps) => {
+  const classes = useStyles();
+  const [order, setOrder] = React.useState<Order>('asc');
+  const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');
+  const handleRequestSort = (_event: React.MouseEvent<unknown>, property: SortableKey) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+  return (
+    <Table size='small'>
+      <EnhancedTableHead
+        classes={classes}
+        order={order}
+        orderBy={orderBy}
+        onRequestSort={handleRequestSort}
+      />
+      <TableBody>
+        {
+          stableSort(offspring, getComparator(order, orderBy)).map(possibleOffspring => {
+            return <TableRow key={possibleOffspring.genome}>
+              <TableCell align='left'>{genomeFormatCondensed ? possibleOffspring.condensedGenome : possibleOffspring.genome}</TableCell>
+              <TableCell align='center'>
+                <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.color}</Typography>} />
+              </TableCell>
+              <TableCell align='left'>{possibleOffspring.probability * 100 + '%'}</TableCell>
+            </TableRow>
+          })}
+      </TableBody>
 
-        </Table>
-    );
+    </Table>
+  );
 }
