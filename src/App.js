@@ -41,7 +41,7 @@ function App() {
             })
           }
         </Select>
-        <Button variant="contained" color="primary" onClick={event => {setRes(possibleGenomes(parent1, parent2))}}>Calculate</Button>
+        <Button variant="contained" color="primary" onClick={event => {setRes(possibleGenomes(parent1, parent2, species))}}>Calculate</Button>
       </form>
         
     </div>

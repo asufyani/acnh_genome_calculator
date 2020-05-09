@@ -2,964 +2,964 @@ export default {
     flowers: {
 
 
-        "Hyacinth": {
+        "hyacinth": {
             "seed": {
-                "Yellow": "00_11_00",
-                "White": "00_00_01",
-                "Red": "11_00_01"
+                "yellow": "00_11_00",
+                "white": "00_00_01",
+                "red": "11_00_01"
             },
             "genomes": {
                 "00_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_01": {
-                    "color": "Pink",
+                    "color": "pink",
                     "island": 1
                 },
                 "11_11_01": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "11_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_01_00": {
-                    "color": "Blue",
+                    "color": "blue",
                     "island": 1
                 },
                 "00_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_11_00": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_00_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_11_00": {
-                    "color": "Yellow",
+                    "color": "yellow",
                     "seed": 1
                 },
                 "11_01_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_00": {
-                    "color": "Orange",
+                    "color": "orange",
                     "island": 1
                 },
                 "11_00_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_00_11": {
-                    "color": "Blue"
+                    "color": "blue"
                 },
                 "11_00_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_00_01": {
                     "seed": 1,
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_00_01": {
                     "seed": 1,
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 }
             },
             "island": {
-                "Blue": "11_01_00",
-                "Pink": "01_00_01",
-                "Orange": "01_11_00"
+                "blue": "11_01_00",
+                "pink": "01_00_01",
+                "orange": "01_11_00"
             }
         },
-        "Windflower": {
+        "windflower": {
             "island": {
-                "Pink": "11_11_01",
-                "Blue": "01_00_11"
+                "pink": "11_11_01",
+                "blue": "01_00_11"
             },
             "seed": {
-                "Red": "11_00_00",
-                "White": "00_00_01",
-                "Orange": "00_11_00"
+                "red": "11_00_00",
+                "white": "00_00_01",
+                "orange": "00_11_00"
             },
             "genomes": {
                 "11_01_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_11_11": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_11_00": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_01_11": {
-                    "color": "Blue"
+                    "color": "blue"
                 },
                 "01_00_11": {
                     "island": 1,
-                    "color": "Blue"
+                    "color": "blue"
                 },
                 "00_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_00_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_11_00": {
-                    "color": "Orange",
+                    "color": "orange",
                     "seed": 1
                 },
                 "11_01_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_11_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_01_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_00_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_11_01": {
                     "island": 1,
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_00_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_00_01": {
-                    "color": "White",
+                    "color": "white",
                     "seed": 1
                 },
                 "01_01_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "01_11_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_11_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_00_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_01_00": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_00_11": {
-                    "color": "Blue"
+                    "color": "blue"
                 },
                 "01_01_11": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_00_00": {
-                    "color": "Red",
+                    "color": "red",
                     "seed": 1
                 },
                 "01_11_11": {
-                    "color": "Orange"
+                    "color": "orange"
                 }
             }
         },
-        "Mum": {
+        "mum": {
             "seed": {
-                "White": "00_00_01",
-                "Yellow": "00_11_00",
-                "Red": "11_00_00"
+                "white": "00_00_01",
+                "yellow": "00_11_00",
+                "red": "11_00_00"
             },
             "genomes": {
                 "00_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_01": {
-                    "color": "Purple",
+                    "color": "purple",
                     "island": 1
                 },
                 "11_11_01": {
-                    "color": "Green"
+                    "color": "green"
                 },
                 "11_11_00": {
-                    "color": "Green"
+                    "color": "green"
                 },
                 "00_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_00_11": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_01_00": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_11_00": {
-                    "color": "Yellow",
+                    "color": "yellow",
                     "seed": 1
                 },
                 "11_01_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_00": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_11_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_11_00": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "11_00_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_00_00": {
-                    "color": "Red",
+                    "color": "red",
                     "seed": 1
                 },
                 "01_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_00_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_01_11": {
                     "island": 1,
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_00_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_01": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_00_01": {
                     "seed": 1,
-                    "color": "White"
+                    "color": "white"
                 }
             },
             "island": {
-                "Purple": "11_01_01",
-                "Pink": "01_01_11"
+                "purple": "11_01_01",
+                "pink": "01_01_11"
             }
         },
-        "Lily": {
+        "lily": {
             "island": {
-                "Orange": "11_11_01",
-                "Pink": "11_01_11",
-                "Black": "11_01_00"
+                "orange": "11_11_01",
+                "pink": "11_01_11",
+                "black": "11_01_00"
             },
             "genomes": {
                 "11_11_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_00_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_01_00": {
                     "island": 1,
-                    "color": "Black"
+                    "color": "black"
                 },
                 "00_11_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_11_00": {
                     "seed": 1,
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_11": {
                     "island": 1,
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_11_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_00_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_01_01": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_11_01": {
                     "island": 1,
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_00_01": {
-                    "color": "Red",
+                    "color": "red",
                     "seed": 1
                 },
                 "01_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_00_01": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_11_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_00_11": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_00_00": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "01_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_00_11": {
                     "seed": 1,
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 }
             },
             "seed": {
-                "Red": "11_00_01",
-                "White": "00_00_11",
-                "Yellow": "00_11_00"
+                "red": "11_00_01",
+                "white": "00_00_11",
+                "yellow": "00_11_00"
             }
         },
-        "Pansy": {
+        "pansy": {
             "island": {
-                "Blue": "01_00_11",
-                "Orange": "11_11_01"
+                "blue": "01_00_11",
+                "orange": "11_11_01"
             },
             "seed": {
-                "Yellow": "00_11_00",
-                "White": "00_00_01",
-                "Red": "11_00_00"
+                "yellow": "00_11_00",
+                "white": "00_00_01",
+                "red": "11_00_00"
             },
             "genomes": {
                 "11_00_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_01_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_00_01": {
                     "seed": 1,
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_00_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_11_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_00_00": {
-                    "color": "Red",
+                    "color": "red",
                     "seed": 1
                 },
                 "01_01_11": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_00_11": {
-                    "color": "Blue"
+                    "color": "blue"
                 },
                 "01_00_11": {
-                    "color": "Blue",
+                    "color": "blue",
                     "island": 1
                 },
                 "00_01_11": {
-                    "color": "Blue"
+                    "color": "blue"
                 },
                 "11_11_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_01_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_11_00": {
                     "seed": 1,
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_11_01": {
                     "island": 1,
-                    "color": "Orange"
+                    "color": "orange"
                 }
             }
         },
-        "Rose": {
+        "rose": {
             "seed": {
-                "Yellow": "00_11_00_00",
-                "White": "00_00_01_00",
-                "Red": "11_00_00_01"
+                "yellow": "00_11_00_00",
+                "white": "00_00_01_00",
+                "red": "11_00_00_01"
             },
             "genomes": {
                 "11_00_01_11": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_01_01_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_11_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_11_01_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_11_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_00_00_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_00_00_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "11_11_11_00": {
-                    "color": "Blue"
+                    "color": "blue"
                 },
                 "11_11_00_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_01_11_01": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_01_00_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_01_00_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_01_11_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_11_00_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_01_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_00_00_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_00_00_01": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_00_11_00": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_11_01_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_11_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_00_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_00_01_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_01_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_11_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_01_01_01": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_00_11_11": {
                     "island": 1,
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_01_00_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_01_11_00": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "00_11_11_01": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_11_00_00": {
-                    "color": "Yellow",
+                    "color": "yellow",
                     "seed": 1
                 },
                 "01_11_11_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_01_00_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_11_11_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_11_00_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_11_11_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_00_11_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_00_00_00": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "01_01_01_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_01_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_00_01_00": {
-                    "color": "White",
+                    "color": "white",
                     "seed": 1
                 },
                 "00_01_01_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_11_01_01": {
-                    "color": "Orange",
+                    "color": "orange",
                     "island": 1
                 },
                 "00_00_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_00_01_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "01_11_00_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_11_11_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_11_00_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_00_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_01_11_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_00_00_11": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "11_00_00_01": {
                     "seed": 1,
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_00_11_00": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "01_11_11_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_00_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_11_00_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_00_01_01": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_00_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_11_01_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_01_01_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_11_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_01_00_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_01_11_00": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "11_11_00_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_11_11_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_01_00_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_00_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_00_11_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "01_00_00_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_00_11_01": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_00_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_01_00_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_11_11_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_00_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_01_11_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_00_01_00": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "01_11_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_01_01_11": {
-                    "color": "White"
+                    "color": "white"
                 }
             },
             "island": {
-                "Orange": "11_11_01_01",
-                "Pink": "11_00_11_11"
+                "orange": "11_11_01_01",
+                "pink": "11_00_11_11"
             }
         },
-        "Tulip": {
+        "tulip": {
             "genomes": {
                 "00_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_01": {
-                    "color": "Pink",
+                    "color": "pink",
                     "island": 1
                 },
                 "00_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_11_01": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "11_11_00": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "01_00_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "00_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_01_00": {
                     "island": 1,
-                    "color": "Black"
+                    "color": "black"
                 },
                 "00_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_11_00": {
-                    "color": "Yellow",
+                    "color": "yellow",
                     "seed": 1
                 },
                 "11_01_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_00_00": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_11_11": {
-                    "color": "Purple"
+                    "color": "purple"
                 },
                 "00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "01_11_00": {
                     "island": 1,
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_00_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "11_00_00": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "01_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_01_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_00_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_00_01": {
                     "seed": 1,
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "00_00_01": {
-                    "color": "White",
+                    "color": "white",
                     "seed": 1
                 }
             },
             "seed": {
-                "Yellow": "00_11_00",
-                "White": "00_00_01",
-                "Red": "11_00_01"
+                "yellow": "00_11_00",
+                "white": "00_00_01",
+                "red": "11_00_01"
             },
             "island": {
-                "Black": "11_01_00",
-                "Orange": "01_11_00",
-                "Pink": "01_00_01"
+                "black": "11_01_00",
+                "orange": "01_11_00",
+                "pink": "01_00_01"
             }
         },
-        "Cosmos": {
+        "cosmos": {
             "island": {
-                "Orange": "11_01_01",
-                "Pink": "01_01_11"
+                "orange": "11_01_01",
+                "pink": "01_01_11"
             },
             "genomes": {
                 "01_11_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "00_00_01": {
-                    "color": "White",
+                    "color": "white",
                     "seed": 1
                 },
                 "01_01_01": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_00_01": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_11": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_00_00": {
-                    "color": "Red",
+                    "color": "red",
                     "seed": 1
                 },
                 "00_00_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_11": {
-                    "color": "Pink",
+                    "color": "pink",
                     "island": 1
                 },
                 "00_00_00": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "01_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_00_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "01_11_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_01_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_11_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_11_11": {
-                    "color": "Red"
+                    "color": "red"
                 },
                 "00_01_00": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_00": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "01_00_11": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_01_11": {
-                    "color": "White"
+                    "color": "white"
                 },
                 "11_11_00": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "00_11_11": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "11_01_00": {
-                    "color": "Orange"
+                    "color": "orange"
                 },
                 "11_01_01": {
-                    "color": "Orange",
+                    "color": "orange",
                     "island": 1
                 },
                 "11_11_01": {
-                    "color": "Black"
+                    "color": "black"
                 },
                 "00_01_01": {
-                    "color": "Yellow"
+                    "color": "yellow"
                 },
                 "01_00_01": {
-                    "color": "Pink"
+                    "color": "pink"
                 },
                 "00_11_01": {
                     "seed": 1,
-                    "color": "Yellow"
+                    "color": "yellow"
                 }
             },
             "seed": {
-                "Red": "11_00_00",
-                "Yellow": "00_11_01",
-                "White": "00_00_01"
+                "red": "11_00_00",
+                "yellow": "00_11_01",
+                "white": "00_00_01"
             }
         }
     }

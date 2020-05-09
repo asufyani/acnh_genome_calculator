@@ -1,3 +1,4 @@
+import * as data from './flowers';
 const memoGeneCombos = {
     '0000': ['00'],
     '0001': ['00','01'],
@@ -9,8 +10,44 @@ const memoGeneCombos = {
     '1101': ['01', '11'],
     '1111': ['11']
   };
+
+  const numeral_map = {
+    0 : '00',
+    1 : '01',
+    2 : '11'
+  }
+
+  const flowers = data.default.flowers;
+  const split_binary = /(?:[01]{2}(\S)){2,3}[01]{2}/;
+  const condensed = /[\d]{3,4}/;
+  const words = /(seed|island) (red|pink|yellow|orange|black|blue|purple|white)/;
+
+  function parseGenomeSet(genomeSet, species) {
+    const genomes = genomeSet.split(',');
+    let splitGenes = [];
+    genomes.forEach(genome => {
+      genome.trim();
+      const split_match = split_binary.exec(genome);
+      if (split_match && split_match[1]) {
+        splitGenes.push(genome.split(split_match[1]));
+      }
+      const condensed_match = condensed.exec(genome);
+      if (!split_match && condensed_match && condensed_match[0]) {
+        splitGenes.push(genome.split('').map(numeral => numeral_map[numeral]));
+      }
+      const word_match = words.exec(genome);
+      if (word_match) {
+        const parts = genome.split(' ');
+        const variant = parts[0];
+        const color = parts[1];
+        const variant_genome = flowers[species][variant][color];
+        splitGenes.push(variant_genome.split('_'));
+      }
+    });
+    return splitGenes;
+  }
   
-  export function possibleGenomes(parent1, parent2) {
+  export function possibleGenomes(parent1, parent2, species) {
     if (parent1 === '') {
       return parent2;
     }
@@ -18,16 +55,9 @@ const memoGeneCombos = {
       return parent1;
     }
     // Split up the parents into their possible genes
-    const genomes1 = parent1.replace(/ /g, '').split(',');
-    let splitGenes1 = [];
-    genomes1.forEach(genome => {
-      splitGenes1.push(genome.split('_'));
-    });
-    const genomes2 = parent2.replace(/ /g, '').split(',');
-    let splitGenes2 = [];
-    genomes2.forEach(genome => {
-      splitGenes2.push(genome.split('_'));
-    });
+    const splitGenes1 = parseGenomeSet(parent1, species);
+    const splitGenes2 = parseGenomeSet(parent2, species);
+    
     // Combine the possible genes of the parents
     let childGenomesPerParents = {};
     splitGenes1.forEach(genome1 => {

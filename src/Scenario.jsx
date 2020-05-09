@@ -22,20 +22,18 @@ function getColorString(colorData) {
 }
 
 const bgColors = {
-    "Black": '#666',
-    "Blue": '#36f',
-    "Orange": '#F93',
-    "Red": "#f33",
-    "Yellow": "#ff3",
-    "Purple": "#63f",
-    "Green": "#9c0",
-    "Pink": "#f9f",
-    "White": "#fff",
+    "black": '#666',
+    "blue": '#36f',
+    "orange": '#f93',
+    "red": "#f33",
+    "yellow": "#ff3",
+    "purple": "#63f",
+    "green": "#9c0",
+    "pink": "#f9f",
+    "white": "#fff",
 }
 
-const textColors = {
-    "Black": '$fff'
-}
+
 export const Scenario = ({parents, offspring, species}) => {
     return (
         <Card>
@@ -57,7 +55,7 @@ export const Scenario = ({parents, offspring, species}) => {
                             const colorData = getColorData(possibleOffspring, species);
                             return <TableRow key={possibleOffspring.genome}>
                                 <TableCell>{possibleOffspring.genome}</TableCell>
-                                <TableCell style={ { backgroundColor: bgColors[colorData.color], color: textColors[colorData.color] || 'black' } }>{getColorString(colorData)}</TableCell>
+                                <TableCell style={ { backgroundColor: bgColors[colorData.color] } }>{getColorString(colorData)}</TableCell>
                                 <TableCell>{possibleOffspring.probability*100+'%'}</TableCell>
                             </TableRow>
                         })}
