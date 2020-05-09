@@ -1,0 +1,270 @@
+Cosmos,00_00_00,White
+Cosmos,00_00_01,White (seed)
+Cosmos,00_00_11,White
+Cosmos,00_01_00,Yellow
+Cosmos,00_01_01,Yellow
+Cosmos,00_01_11,White
+Cosmos,00_11_00,Yellow
+Cosmos,00_11_01,Yellow (seed)
+Cosmos,00_11_11,Yellow
+Cosmos,01_00_00,Pink
+Cosmos,01_00_01,Pink
+Cosmos,01_00_11,Pink
+Cosmos,01_01_00,Orange
+Cosmos,01_01_01,Orange
+Cosmos,01_01_11,Pink (island)
+Cosmos,01_11_00,Orange
+Cosmos,01_11_01,Orange
+Cosmos,01_11_11,Orange
+Cosmos,11_00_00,Red (seed)
+Cosmos,11_00_01,Red
+Cosmos,11_00_11,Red
+Cosmos,11_01_00,Orange
+Cosmos,11_01_01,Orange (island)
+Cosmos,11_01_11,Red
+Cosmos,11_11_00,Black
+Cosmos,11_11_01,Black
+Cosmos,11_11_11,Red
+Hyacinth,00_00_00,White
+Hyacinth,00_00_01,White (seed)
+Hyacinth,00_00_11,Blue
+Hyacinth,00_01_00,Yellow
+Hyacinth,00_01_01,Yellow
+Hyacinth,00_01_11,White
+Hyacinth,00_11_00,Yellow (seed)
+Hyacinth,00_11_01,Yellow
+Hyacinth,00_11_11,Yellow
+Hyacinth,01_00_00,Red
+Hyacinth,01_00_01,Pink (island)
+Hyacinth,01_00_11,White
+Hyacinth,01_01_00,Orange
+Hyacinth,01_01_01,Yellow
+Hyacinth,01_01_11,Yellow
+Hyacinth,01_11_00,Orange (island)
+Hyacinth,01_11_01,Yellow
+Hyacinth,01_11_11,Yellow
+Hyacinth,11_00_00,Red
+Hyacinth,11_00_01,Red (seed)
+Hyacinth,11_00_11,Red
+Hyacinth,11_01_00,Blue (island)
+Hyacinth,11_01_01,Red
+Hyacinth,11_01_11,Red
+Hyacinth,11_11_00,Purple
+Hyacinth,11_11_01,Purple
+Hyacinth,11_11_11,Purple
+Lily,00_00_00,White
+Lily,00_00_01,White
+Lily,00_00_11,White (seed)
+Lily,00_01_00,Yellow
+Lily,00_01_01,White
+Lily,00_01_11,White
+Lily,00_11_00,Yellow (seed)
+Lily,00_11_01,Yellow
+Lily,00_11_11,White
+Lily,01_00_00,Red
+Lily,01_00_01,Pink
+Lily,01_00_11,White
+Lily,01_01_00,Orange
+Lily,01_01_01,Yellow
+Lily,01_01_11,Yellow
+Lily,01_11_00,Orange
+Lily,01_11_01,Yellow
+Lily,01_11_11,Yellow
+Lily,11_00_00,Black
+Lily,11_00_01,Red (seed)
+Lily,11_00_11,Pink
+Lily,11_01_00,Black (island)
+Lily,11_01_01,Red
+Lily,11_01_11,Pink (island)
+Lily,11_11_00,Orange
+Lily,11_11_01,Orange (island)
+Lily,11_11_11,White
+Mum,00_00_00,White
+Mum,00_00_01,White (seed)
+Mum,00_00_11,Purple
+Mum,00_01_00,Yellow
+Mum,00_01_01,Yellow
+Mum,00_01_11,White
+Mum,00_11_00,Yellow (seed)
+Mum,00_11_01,Yellow
+Mum,00_11_11,Yellow
+Mum,01_00_00,Pink
+Mum,01_00_01,Pink
+Mum,01_00_11,Pink
+Mum,01_01_00,Yellow
+Mum,01_01_01,Red
+Mum,01_01_11,Pink (island)
+Mum,01_11_00,Purple
+Mum,01_11_01,Purple
+Mum,01_11_11,Purple
+Mum,11_00_00,Red (seed)
+Mum,11_00_01,Red
+Mum,11_00_11,Red
+Mum,11_01_00,Purple
+Mum,11_01_01,Purple (island)
+Mum,11_01_11,Red
+Mum,11_11_00,Green
+Mum,11_11_01,Green
+Mum,11_11_11,Red
+Pansy,00_00_00,White
+Pansy,00_00_01,White (seed)
+Pansy,00_00_11,Blue
+Pansy,00_01_00,Yellow
+Pansy,00_01_01,Yellow
+Pansy,00_01_11,Blue
+Pansy,00_11_00,Yellow (seed)
+Pansy,00_11_01,Yellow
+Pansy,00_11_11,Yellow
+Pansy,01_00_00,Red
+Pansy,01_00_01,Red
+Pansy,01_00_11,Blue (island)
+Pansy,01_01_00,Orange
+Pansy,01_01_01,Orange
+Pansy,01_01_11,Orange
+Pansy,01_11_00,Yellow
+Pansy,01_11_01,Yellow
+Pansy,01_11_11,Yellow
+Pansy,11_00_00,Red (seed)
+Pansy,11_00_01,Red
+Pansy,11_00_11,Purple
+Pansy,11_01_00,Red
+Pansy,11_01_01,Red
+Pansy,11_01_11,Purple
+Pansy,11_11_00,Orange
+Pansy,11_11_01,Orange (island)
+Pansy,11_11_11,Purple
+Rose,00_00_00_00,White
+Rose,00_00_00_01,White
+Rose,00_00_00_11,White
+Rose,00_00_01_00,White (seed)
+Rose,00_00_01_01,White
+Rose,00_00_01_11,White
+Rose,00_00_11_00,Purple
+Rose,00_00_11_01,Purple
+Rose,00_00_11_11,Purple
+Rose,00_01_00_00,Yellow
+Rose,00_01_00_01,Yellow
+Rose,00_01_00_11,Yellow
+Rose,00_01_01_00,White
+Rose,00_01_01_01,White
+Rose,00_01_01_11,White
+Rose,00_01_11_00,Purple
+Rose,00_01_11_01,Purple
+Rose,00_01_11_11,Purple
+Rose,00_11_00_00,Yellow (seed)
+Rose,00_11_00_01,Yellow
+Rose,00_11_00_11,Yellow
+Rose,00_11_01_00,Yellow
+Rose,00_11_01_01,Yellow
+Rose,00_11_01_11,Yellow
+Rose,00_11_11_00,White
+Rose,00_11_11_01,White
+Rose,00_11_11_11,White
+Rose,01_00_00_00,Red
+Rose,01_00_00_01,Pink
+Rose,01_00_00_11,White
+Rose,01_00_01_00,Red
+Rose,01_00_01_01,Pink
+Rose,01_00_01_11,White
+Rose,01_00_11_00,Red
+Rose,01_00_11_01,Pink
+Rose,01_00_11_11,Purple
+Rose,01_01_00_00,Orange
+Rose,01_01_00_01,Yellow
+Rose,01_01_00_11,Yellow
+Rose,01_01_01_00,Red
+Rose,01_01_01_01,Pink
+Rose,01_01_01_11,White
+Rose,01_01_11_00,Red
+Rose,01_01_11_01,Pink
+Rose,01_01_11_11,Purple
+Rose,01_11_00_00,Orange
+Rose,01_11_00_01,Yellow
+Rose,01_11_00_11,Yellow
+Rose,01_11_01_00,Orange
+Rose,01_11_01_01,Yellow
+Rose,01_11_01_11,Yellow
+Rose,01_11_11_00,Red
+Rose,01_11_11_01,Pink
+Rose,01_11_11_11,White
+Rose,11_00_00_00,Black
+Rose,11_00_00_01,Red (seed)
+Rose,11_00_00_11,Pink
+Rose,11_00_01_00,Black
+Rose,11_00_01_01,Red
+Rose,11_00_01_11,Pink
+Rose,11_00_11_00,Black
+Rose,11_00_11_01,Red
+Rose,11_00_11_11,Pink (island)
+Rose,11_01_00_00,Orange
+Rose,11_01_00_01,Orange
+Rose,11_01_00_11,Yellow
+Rose,11_01_01_00,Red
+Rose,11_01_01_01,Red
+Rose,11_01_01_11,White
+Rose,11_01_11_00,Black
+Rose,11_01_11_01,Red
+Rose,11_01_11_11,Purple
+Rose,11_11_00_00,Orange
+Rose,11_11_00_01,Orange
+Rose,11_11_00_11,Yellow
+Rose,11_11_01_00,Orange
+Rose,11_11_01_01,Orange (island)
+Rose,11_11_01_11,Yellow
+Rose,11_11_11_00,Blue
+Rose,11_11_11_01,Red
+Rose,11_11_11_11,White
+Tulip,00_00_00,White
+Tulip,00_00_01,White (seed)
+Tulip,00_00_11,White
+Tulip,00_01_00,Yellow
+Tulip,00_01_01,Yellow
+Tulip,00_01_11,White
+Tulip,00_11_00,Yellow (seed)
+Tulip,00_11_01,Yellow
+Tulip,00_11_11,Yellow
+Tulip,01_00_00,Red
+Tulip,01_00_01,Pink (island)
+Tulip,01_00_11,White
+Tulip,01_01_00,Orange
+Tulip,01_01_01,Yellow
+Tulip,01_01_11,Yellow
+Tulip,01_11_00,Orange (island)
+Tulip,01_11_01,Yellow
+Tulip,01_11_11,Yellow
+Tulip,11_00_00,Black
+Tulip,11_00_01,Red (seed)
+Tulip,11_00_11,Red
+Tulip,11_01_00,Black (island)
+Tulip,11_01_01,Red
+Tulip,11_01_11,Red
+Tulip,11_11_00,Purple
+Tulip,11_11_01,Purple
+Tulip,11_11_11,Purple
+Windflower,00_00_00,White
+Windflower,00_00_01,White (seed)
+Windflower,00_00_11,Blue
+Windflower,00_01_00,Orange
+Windflower,00_01_01,Orange
+Windflower,00_01_11,Blue
+Windflower,00_11_00,Orange (seed)
+Windflower,00_11_01,Orange
+Windflower,00_11_11,Orange
+Windflower,01_00_00,Red
+Windflower,01_00_01,Red
+Windflower,01_00_11,Blue (island)
+Windflower,01_01_00,Pink
+Windflower,01_01_01,Pink
+Windflower,01_01_11,Pink
+Windflower,01_11_00,Orange
+Windflower,01_11_01,Orange
+Windflower,01_11_11,Orange
+Windflower,11_00_00,Red (seed)
+Windflower,11_00_01,Red
+Windflower,11_00_11,Purple
+Windflower,11_01_00,Red
+Windflower,11_01_01,Red
+Windflower,11_01_11,Purple
+Windflower,11_11_00,Pink
+Windflower,11_11_01,Pink (island)
+Windflower,11_11_11,Purple
