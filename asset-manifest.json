@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/acnh_genome_calculator/static/css/main.6537aabd.chunk.css",
-    "main.js": "/acnh_genome_calculator/static/js/main.abfb335e.chunk.js",
-    "main.js.map": "/acnh_genome_calculator/static/js/main.abfb335e.chunk.js.map",
+    "main.js": "/acnh_genome_calculator/static/js/main.ad4dd475.chunk.js",
+    "main.js.map": "/acnh_genome_calculator/static/js/main.ad4dd475.chunk.js.map",
     "runtime-main.js": "/acnh_genome_calculator/static/js/runtime-main.b9f1097c.js",
     "runtime-main.js.map": "/acnh_genome_calculator/static/js/runtime-main.b9f1097c.js.map",
-    "static/js/2.ca64947d.chunk.js": "/acnh_genome_calculator/static/js/2.ca64947d.chunk.js",
-    "static/js/2.ca64947d.chunk.js.map": "/acnh_genome_calculator/static/js/2.ca64947d.chunk.js.map",
+    "static/js/2.b3f264d8.chunk.js": "/acnh_genome_calculator/static/js/2.b3f264d8.chunk.js",
+    "static/js/2.b3f264d8.chunk.js.map": "/acnh_genome_calculator/static/js/2.b3f264d8.chunk.js.map",
     "index.html": "/acnh_genome_calculator/index.html",
-    "precache-manifest.7fd9ff7fa55b06450ee6d1b52badb225.js": "/acnh_genome_calculator/precache-manifest.7fd9ff7fa55b06450ee6d1b52badb225.js",
+    "precache-manifest.682ca4fbc1bb98c5ddb2625b94e7aa44.js": "/acnh_genome_calculator/precache-manifest.682ca4fbc1bb98c5ddb2625b94e7aa44.js",
     "service-worker.js": "/acnh_genome_calculator/service-worker.js",
     "static/css/main.6537aabd.chunk.css.map": "/acnh_genome_calculator/static/css/main.6537aabd.chunk.css.map",
-    "static/js/2.ca64947d.chunk.js.LICENSE.txt": "/acnh_genome_calculator/static/js/2.ca64947d.chunk.js.LICENSE.txt"
+    "static/js/2.b3f264d8.chunk.js.LICENSE.txt": "/acnh_genome_calculator/static/js/2.b3f264d8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b9f1097c.js",
-    "static/js/2.ca64947d.chunk.js",
+    "static/js/2.b3f264d8.chunk.js",
     "static/css/main.6537aabd.chunk.css",
-    "static/js/main.abfb335e.chunk.js"
+    "static/js/main.ad4dd475.chunk.js"
   ]
 }
