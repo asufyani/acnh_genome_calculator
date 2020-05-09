@@ -1,8 +1,9 @@
 body {
-  background-color: 'yellow';
+  background-color: #ccc;
 }
-.MuiCard-root {
-  background-color: #282c34;
+
+.MuiGrid-root.resultsContainer {
+  padding: 10px;
 }
 
 .App {

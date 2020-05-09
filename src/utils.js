@@ -22,6 +22,41 @@ const memoGeneCombos = {
   const condensed = /[\d]{3,4}/;
   const words = /(seed|island) (red|pink|yellow|orange|black|blue|purple|white)/;
 
+  export function getColorData(species, genome) {
+    let colorData = flowers[species]['genomes'][genome];
+    let colorString = getColorString(colorData);
+    colorData = {
+      backgroundColor: bgColors[colorData.color],
+      color: colorString,
+    };
+    return colorData;   
+ }
+
+ export function getColorString(colorData) {
+  let colorString = colorData.color;
+  if (colorData.island) {
+      colorString += " (island)";
+  }
+  else if (colorData.seed) {
+      colorString += " (seed)";
+  }
+  return colorString;
+}
+
+
+const bgColors = {
+  "black": '#666',
+  "blue": '#36f',
+  "orange": '#f93',
+  "red": "#f33",
+  "yellow": "#ff3",
+  "purple": "#63f",
+  "green": "#9c0",
+  "pink": "#f9f",
+  "white": "#fff",
+}
+
+
   function parseGenomeSet(genomeSet, species) {
     const genomes = genomeSet.split(',');
     let splitGenes = [];
@@ -85,9 +120,12 @@ const memoGeneCombos = {
         genomeCount++;
       });
       Object.keys(genomeOccurrences).sort().forEach(dedupedGenome => {
+        const colorData = getColorData(species, dedupedGenome);
         result.offspring.push({
           genome: dedupedGenome,
-          probability:  genomeOccurrences[dedupedGenome]/genomeCount
+          probability:  genomeOccurrences[dedupedGenome]/genomeCount,
+          species,
+          ...colorData
         });
       });
       res.push(result);
