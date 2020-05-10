@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import * as data from './flowers';
-import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, Button, makeStyles, createStyles } from '@material-ui/core';
+import { Grid, TextField, Button, makeStyles, createStyles } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
 import { Pairing, Species } from './types';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
+import { SpeciesSelect } from './SpeciesSelect';
 
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -24,13 +25,13 @@ const useStyles = makeStyles((theme) => createStyles({
 }));
 
 export const Calculator = () => {
+  const speciesList = Object.keys(data.default.flowers).sort();
   const [parent1, setParent1] = useState('');
   const [parent2, setParent2] = useState('');
   const [res, setRes] = useState([] as Pairing[]);
-  const [species, setSpecies] = useState('' as Species | '');
+  const [species, setSpecies] = useState(speciesList[0] as Species);
   const [genomeFormatCondensed, setGenomeFormatCondensed] = useState(false);
   const classes = useStyles();
-  const flowerData = data.default.flowers;
 
   return (
     <>
@@ -47,28 +48,7 @@ export const Calculator = () => {
                   <TextField label="Parent 2" value={parent2} onChange={event => setParent2(event.target.value)} />
                 </Grid>
                 <Grid item xs={12} sm={3} md={3}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel shrink id="species-select-label">
-                      Species
-                            </InputLabel>
-                    <Select
-                      labelId="species-select-label"
-                      id="species-select"
-                      value={species}
-                      onChange={(e: React.ChangeEvent<{ value: unknown }>) => setSpecies(e.target.value as Species)}
-                      displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      {
-                        Object.keys(flowerData).map(species => {
-                          return <MenuItem key={species} value={species}>{species}</MenuItem>
-                        })
-                      }
-                    </Select>
-                  </FormControl>
+                  <SpeciesSelect species={species} setSpecies={setSpecies} />
                 </Grid>
               </Grid>
             </Grid>

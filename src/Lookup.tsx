@@ -5,6 +5,7 @@ import * as data from './flowers';
 import { getOffspringData } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
+import { SpeciesSelect } from './SpeciesSelect';
 const flowerData = data.default.flowers;
 const speciesList = Object.keys(flowerData).sort();
 const useStyles = makeStyles((theme) => createStyles({
@@ -41,26 +42,7 @@ export const Lookup = () => {
     <>
       <Grid container>
         <Grid item>
-          <FormControl className={classes.formControl}>
-            <InputLabel shrink id="species-select-label">
-              Species
-            </InputLabel>
-            <Select
-              labelId="species-select-label"
-              id="species-select"
-              value={species}
-              onChange={(e: React.ChangeEvent<{ value: unknown }>) => setSpecies(e.target.value as Species)}
-              displayEmpty
-              className={classes.selectEmpty}
-            >
-              {
-                speciesList.sort().map(species => {
-                  return <MenuItem key={species} value={species}>{species}</MenuItem>
-                })
-              }
-            </Select>
-          </FormControl>
-
+          <SpeciesSelect species={species} setSpecies={setSpecies} />
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
