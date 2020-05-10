@@ -65,14 +65,15 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.sortKey}
-            align='left'
-            padding='default'
+            align='center'
+            padding='none'
             sortDirection={orderBy === headCell.sortKey ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.sortKey}
               direction={orderBy === headCell.sortKey ? order : 'asc'}
               onClick={createSortHandler(headCell.sortKey)}
+              hideSortIcon={true}
             >
               {headCell.label}
               {orderBy === headCell.sortKey ? (
@@ -103,7 +104,7 @@ export const OffspringTable = ({ offspring, genomeFormatCondensed }: OffspringTa
     setOrderBy(property);
   };
   return (
-    <Table size='small'>
+    <Table size='small' padding='none'>
       <EnhancedTableHead
         classes={classes}
         order={order}
@@ -114,11 +115,11 @@ export const OffspringTable = ({ offspring, genomeFormatCondensed }: OffspringTa
         {
           stableSort(offspring, getComparator(order, orderBy)).map(possibleOffspring => {
             return <TableRow key={possibleOffspring.genome}>
-              <TableCell align='left'>{genomeFormatCondensed ? possibleOffspring.condensedGenome : possibleOffspring.genome}</TableCell>
+              <TableCell align='center'>{genomeFormatCondensed ? possibleOffspring.condensedGenome : possibleOffspring.genome}</TableCell>
               <TableCell align='center'>
                 <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.color}</Typography>} />
               </TableCell>
-              <TableCell align='left'>{possibleOffspring.probability * 100 + '%'}</TableCell>
+              <TableCell align='center'>{possibleOffspring.probability * 100 + '%'}</TableCell>
             </TableRow>
           })}
       </TableBody>

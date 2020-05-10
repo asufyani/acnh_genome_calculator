@@ -20,7 +20,7 @@ const numeral_map = {
 const flowers = data.default.flowers;
 const split_binary = /(?:[01]{2}(\S)){2,3}[01]{2}/;
 const condensed = /[\d]{3,4}/;
-const words = /(seed|island) (red|pink|yellow|orange|black|blue|purple|white)/;
+const words = /(seed|island) (red|pink|yellow|orange|black|blue|purple|white)/i;
 
 export function getColorData(species, genome) {
   let colorData = flowers[species]['genomes'][genome];
@@ -72,7 +72,7 @@ function parseGenomeSet(genomeSet, species) {
     }
     const word_match = words.exec(genome);
     if (word_match) {
-      const parts = genome.split(' ');
+      const parts = genome.toLowerCase().split(' ');
       const variant = parts[0];
       const color = parts[1];
       const variant_genome = flowers[species][variant][color];
