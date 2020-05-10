@@ -40,24 +40,27 @@ interface HeadCell {
   numeric: boolean;
 }
 
-const headCells: HeadCell[] = [
-  { sortKey: 'genome', numeric: false, disablePadding: true, label: 'Genome' },
-  { sortKey: 'color', numeric: false, disablePadding: false, label: 'Color' },
-  { sortKey: 'probability', numeric: true, disablePadding: false, label: 'Probability' },
-];
+
 
 interface EnhancedTableProps {
   classes: ReturnType<typeof useStyles>;
   onRequestSort: (event: React.MouseEvent<unknown>, property: SortableKey) => void;
   order: Order;
   orderBy: string;
+  showProbability?: boolean;
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { classes, order, orderBy, onRequestSort } = props;
+  const { classes, order, orderBy, onRequestSort, showProbability=true } = props;
   const createSortHandler = (property: SortableKey) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
+
+  const headCells: HeadCell[] = [
+    { sortKey: 'genome', numeric: false, disablePadding: true, label: 'Genome' },
+    { sortKey: 'color', numeric: false, disablePadding: false, label: 'Color' },
+    ...(showProbability ? [{ sortKey: 'probability' as SortableKey, numeric: true, disablePadding: false, label: 'Probability' }] : []),
+  ];
 
   return (
     <TableHead>
@@ -92,9 +95,10 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 export interface OffspringTableProps {
   offspring: Offspring[],
   genomeFormatCondensed: boolean,
+  showProbability?: boolean
 }
 
-export const OffspringTable = ({ offspring, genomeFormatCondensed }: OffspringTableProps) => {
+export const OffspringTable = ({ offspring, genomeFormatCondensed, showProbability = true }: OffspringTableProps) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');
@@ -110,6 +114,7 @@ export const OffspringTable = ({ offspring, genomeFormatCondensed }: OffspringTa
         order={order}
         orderBy={orderBy}
         onRequestSort={handleRequestSort}
+        showProbability={showProbability}
       />
       <TableBody>
         {
@@ -119,7 +124,7 @@ export const OffspringTable = ({ offspring, genomeFormatCondensed }: OffspringTa
               <TableCell align='center'>
                 <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.color}</Typography>} />
               </TableCell>
-              <TableCell align='center'>{possibleOffspring.probability * 100 + '%'}</TableCell>
+              {showProbability && <TableCell align='center'>{possibleOffspring.probability * 100 + '%'}</TableCell>}
             </TableRow>
           })}
       </TableBody>

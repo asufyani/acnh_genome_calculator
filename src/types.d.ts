@@ -14,3 +14,13 @@ export type Pairing = {
 }
 
 export type Order = 'asc' | 'desc';
+
+export type Species = 'hyacinth' | 'windflower' | 'mum' | 'lily' | 'pansy' | 'rose' | 'tulip' | 'cosmos';
+
+export type GenomeData = {
+  [key: string]: {
+    color: string,
+    seed?: number,
+    island?: number
+  }
+}

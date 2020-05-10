@@ -3,7 +3,7 @@ import * as data from './flowers';
 import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, FormLabel, Typography, Switch, Button, makeStyles, createStyles } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
-import { Pairing } from './types';
+import { Pairing, Species } from './types';
 
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -26,10 +26,11 @@ export const Calculator = () => {
   const [parent1, setParent1] = useState('');
   const [parent2, setParent2] = useState('');
   const [res, setRes] = useState([] as Pairing[]);
-  const [species, setSpecies] = useState('');
+  const [species, setSpecies] = useState('' as Species | '');
   const [genomeFormatCondensed, setGenomeFormatCondensed] = useState(false);
   const classes = useStyles();
   const flowerData = data.default.flowers;
+
   function handleSwitch(event: React.ChangeEvent) {
     setGenomeFormatCondensed(!genomeFormatCondensed);
   };
@@ -56,7 +57,7 @@ export const Calculator = () => {
                       labelId="species-select-label"
                       id="species-select"
                       value={species}
-                      onChange={(e: React.ChangeEvent<{ value: unknown }>) => setSpecies(e.target.value as string)}
+                      onChange={(e: React.ChangeEvent<{ value: unknown }>) => setSpecies(e.target.value as Species)}
                       displayEmpty
                       className={classes.selectEmpty}
                     >

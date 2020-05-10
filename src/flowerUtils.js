@@ -43,6 +43,16 @@ export function getColorString(colorData) {
   return colorString;
 }
 
+export function getOffspringData(species, genome) {
+  const colorData = getColorData(species, genome);
+  const condensedGenome = condenseGenome(genome);
+  return {
+    genome: genome,
+    condensedGenome,
+    species,
+    ...colorData
+  };
+}
 
 const bgColors = {
   "black": '#666',
@@ -120,14 +130,10 @@ export function possibleGenomes(parent1, parent2, species) {
       genomeCount++;
     });
     Object.keys(genomeOccurrences).sort().forEach(dedupedGenome => {
-      const colorData = getColorData(species, dedupedGenome);
-      const condensedGenome = condenseGenome(dedupedGenome);
+      const offspringData = getOffspringData(species, dedupedGenome)
       result.offspring.push({
-        genome: dedupedGenome,
-        condensedGenome,
         probability: genomeOccurrences[dedupedGenome] / genomeCount,
-        species,
-        ...colorData
+        ...offspringData
       });
     });
     res.push(result);
@@ -136,7 +142,7 @@ export function possibleGenomes(parent1, parent2, species) {
 }
 
 export function condenseGenome(genome) {
-  return genome.split('_').map(allele => { return allele.split('').reduce((a,b) => {return parseInt(a,2)+parseInt(b,2)})}).join('');
+  return genome.split('_').map(allele => { return allele.split('').reduce((a, b) => { return parseInt(a, 2) + parseInt(b, 2) }) }).join('');
 }
 
 export function createPossibleGenomeList(possibilities) {
