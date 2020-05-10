@@ -1,5 +1,6 @@
 import * as data from './flowers';
-const memoGeneCombos = {
+import { Species, GenomeData, Offspring, Pairing, Color, VariantMap, PartialOffspring } from './types';
+const memoGeneCombos: {[key: string]: string[]} = {
   '0000': ['00'],
   '0001': ['00', '01'],
   '0011': ['01'],
@@ -11,7 +12,7 @@ const memoGeneCombos = {
   '1111': ['11']
 };
 
-const numeral_map = {
+const numeral_map: {[key: number] : string} = {
   0: '00',
   1: '01',
   2: '11'
@@ -22,36 +23,40 @@ const split_binary = /(?:[01]{2}(\S)){2,3}[01]{2}/;
 const condensed = /[\d]{3,4}/;
 const words = /(seed|island) (red|pink|yellow|orange|black|blue|purple|white)/i;
 
-export function getColorData(species, genome) {
-  let colorData = flowers[species]['genomes'][genome];
-  let colorString = getColorString(colorData);
-  colorData = {
-    backgroundColor: bgColors[colorData.color],
-    color: colorString,
+export function getColorData(species: Species, genome: string): PartialOffspring {
+  const genomeData: GenomeData = flowers[species]['genomes'] as GenomeData;
+  const data = genomeData[genome];
+  const colorString = getColorString(data);
+  const colorData = {
+    species,
+    genome,
+    backgroundColor: bgColors[data.color],
+    colorDisplayString: colorString,
+    color: data.color,
   };
   return colorData;
 }
 
-export function getColorString(colorData) {
-  let colorString = colorData.color;
-  if (colorData.island) {
+export function getColorString({color, seed, island} : {color: Color, seed? : number, island?: number}): string {
+  let colorString = color;
+  if (island) {
     colorString += " (island)";
   }
-  else if (colorData.seed) {
+  else if (seed) {
     colorString += " (seed)";
   }
   return colorString;
 }
 
-export function getOffspringData(species, genome) {
+export function getOffspringData(species: Species, genome: string): Offspring {
   const colorData = getColorData(species, genome);
   const condensedGenome = condenseGenome(genome);
   return {
-    genome: genome,
+    genome,
     condensedGenome,
     species,
     ...colorData
-  };
+  } as Offspring;
 }
 
 const bgColors = {
@@ -67,9 +72,9 @@ const bgColors = {
 }
 
 
-function parseGenomeSet(genomeSet, species) {
+function parseGenomeSet(genomeSet: string, species: Species) {
   const genomes = genomeSet.split(',');
-  let splitGenes = [];
+  let splitGenes = [] as string[][];
   genomes.forEach(rawGenome => {
     const genome = rawGenome.trim();
     const split_match = split_binary.exec(genome);
@@ -78,33 +83,34 @@ function parseGenomeSet(genomeSet, species) {
     }
     const condensed_match = condensed.exec(genome);
     if (!split_match && condensed_match && condensed_match[0]) {
-      splitGenes.push(genome.split('').map(numeral => numeral_map[numeral]));
+      splitGenes.push(genome.split('').map((numeral: string): string => numeral_map[parseInt(numeral,3)]));
     }
     const word_match = words.exec(genome);
     if (word_match) {
       const parts = genome.toLowerCase().split(' ');
       const variant = parts[0];
       const color = parts[1];
-      const variant_genome = flowers[species][variant][color];
+      const variantData: VariantMap = flowers[species][variant as 'seed'|'island'];
+      const variant_genome = variantData[color];
       splitGenes.push(variant_genome.split('_'));
     }
   });
   return splitGenes;
 }
 
-export function possibleGenomes(parent1, parent2, species) {
-  if (parent1 === '') {
-    return parent2;
-  }
-  if (parent2 === '') {
-    return parent1;
-  }
+export function possibleGenomes(parent1: string, parent2: string, species: Species): Pairing[] {
+  // if (parent1 === '') {
+  //   return parent2;
+  // }
+  // if (parent2 === '') {
+  //   return parent1;
+  // }
   // Split up the parents into their possible genes
   const splitGenes1 = parseGenomeSet(parent1, species);
   const splitGenes2 = parseGenomeSet(parent2, species);
 
   // Combine the possible genes of the parents
-  let childGenomesPerParents = {};
+  let childGenomesPerParents: {[key: string]: string[]} = {};
   splitGenes1.forEach(genome1 => {
     splitGenes2.forEach(genome2 => {
       let allelesForEachGene = [];
@@ -117,13 +123,13 @@ export function possibleGenomes(parent1, parent2, species) {
     })
   });
   // Massage the data to be displayed in the sheet.
-  let res = [];
+  let res = [] as Pairing[];
   Object.keys(childGenomesPerParents).forEach(parentCombo => {
-    let result = {};
+    let result = {} as Pairing;
     let parents = parentCombo.split(',');
     result.parents = parents;
     result.offspring = [];
-    let genomeOccurrences = {};
+    let genomeOccurrences: {[key: string]: number} = {};
     let genomeCount = 0;
     childGenomesPerParents[parentCombo].forEach(childGenome => {
       genomeOccurrences[childGenome] = genomeOccurrences[childGenome] ? genomeOccurrences[childGenome] + 1 : 1;
@@ -141,20 +147,20 @@ export function possibleGenomes(parent1, parent2, species) {
   return res;
 }
 
-export function condenseGenome(genome) {
-  return genome.split('_').map(allele => { return allele.split('').reduce((a, b) => { return parseInt(a, 2) + parseInt(b, 2) }) }).join('');
+export function condenseGenome(genome: string): string {
+  return genome.split('_').map(allele => { return allele.split('').reduce((a: string, b: string) => { return (parseInt(a, 2) + parseInt(b, 2)).toString() }) }).join('');
 }
 
-export function createPossibleGenomeList(possibilities) {
+export function createPossibleGenomeList(possibilities: string[][]): string[] {
   if (possibilities.length === 1) {
     return possibilities[0]
   }
   const heads = possibilities.shift();
   const genomeTails = createPossibleGenomeList(possibilities);
   let combinedGenes = [];
-  for (let i = 0; i < heads.length; i++) {
+  for (let i = 0; i < heads!.length; i++) {
     for (let j = 0; j < genomeTails.length; j++) {
-      combinedGenes.push(heads[i] + '_' + genomeTails[j]);
+      combinedGenes.push(heads![i] + '_' + genomeTails[j]);
     }
   }
   return combinedGenes;

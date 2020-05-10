@@ -31,7 +31,7 @@ export const Lookup = () => {
   const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
 
   let possibleGenomes = [] as Offspring[];
-  const allGenomes: GenomeData = flowerData[species]['genomes'];
+  const allGenomes = flowerData[species]['genomes'] as GenomeData;
   Object.keys(allGenomes).forEach(genome => {
     if (allGenomes[genome].color === color) {
       possibleGenomes.push(getOffspringData(species, genome))

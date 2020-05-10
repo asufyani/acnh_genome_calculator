@@ -2,7 +2,7 @@ import React from 'react';
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles, createStyles, Theme, Table, TableBody, Chip, Typography } from '@material-ui/core';
 import { Offspring, Order, GenomeFormat } from './types';
 import { stableSort, getComparator } from './tableUtils';
-type SortableKey = "genome" | "probability" | "color";
+type SortableKey = "genome" | "probability" | "colorDisplayString";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -58,7 +58,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
   const headCells: HeadCell[] = [
     { sortKey: 'genome', numeric: false, disablePadding: true, label: 'Genome' },
-    { sortKey: 'color', numeric: false, disablePadding: false, label: 'Color' },
+    { sortKey: 'colorDisplayString', numeric: false, disablePadding: false, label: 'Color' },
     ...(showProbability ? [{ sortKey: 'probability' as SortableKey, numeric: true, disablePadding: false, label: 'Probability' }] : []),
   ];
 
@@ -118,11 +118,11 @@ export const OffspringTable = ({ offspring, genomeFormat, showProbability = true
       />
       <TableBody>
         {
-          stableSort(offspring, getComparator(order, orderBy)).map(possibleOffspring => {
+          stableSort(offspring, getComparator(order, orderBy)).map((possibleOffspring: Offspring) => {
             return <TableRow key={possibleOffspring.genome}>
               <TableCell align='center'>{genomeFormat === 'condensed' ? possibleOffspring.condensedGenome : possibleOffspring.genome}</TableCell>
               <TableCell align='center'>
-                <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.color}</Typography>} />
+                <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.colorDisplayString}</Typography>} />
               </TableCell>
               {showProbability && <TableCell align='center'>{possibleOffspring.probability * 100 + '%'}</TableCell>}
             </TableRow>
