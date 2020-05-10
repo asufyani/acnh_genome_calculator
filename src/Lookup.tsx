@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles, FormLabel, Typography, Switch } from '@material-ui/core';
+import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
 import { Species, GenomeData, Offspring } from './types';
 import * as data from './flowers';
 import { getOffspringData } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
+import { GenomeFormatSelector } from './GenomeFormatSelector';
 const flowerData = data.default.flowers;
 const speciesList = Object.keys(flowerData).sort();
 const useStyles = makeStyles((theme) => createStyles({
@@ -27,9 +28,7 @@ export const Lookup = () => {
   const [species, setSpecies] = useState(speciesList[0] as Species);
   const [color, setColor] = useState(flowerData[species]['colors'][0] as string);
   const [genomeFormatCondensed, setGenomeFormatCondensed] = useState(false);
-  function handleSwitch(event: React.ChangeEvent) {
-    setGenomeFormatCondensed(!genomeFormatCondensed);
-  };
+
   let possibleGenomes = [] as Offspring[];
   const allGenomes: GenomeData = flowerData[species]['genomes'];
   Object.keys(allGenomes).forEach(genome => {
@@ -85,19 +84,7 @@ export const Lookup = () => {
           </FormControl>
         </Grid>
         <Grid item>
-          <FormControl>
-            <FormLabel component="legend">Genome Display Format</FormLabel>
-
-            <Typography component="div">
-              <Grid component="label" container alignItems="center" spacing={1}>
-                <Grid item>Binary</Grid>
-                <Grid item>
-                  <Switch color="primary" checked={genomeFormatCondensed} onChange={handleSwitch} name="genomeFormat" />
-                </Grid>
-                <Grid item>Condensed</Grid>
-              </Grid>
-            </Typography>
-          </FormControl>
+         <GenomeFormatSelector genomeFormatCondensed={genomeFormatCondensed} setGenomeFormatCondensed={setGenomeFormatCondensed} />
         </Grid>
       </Grid>
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import * as data from './flowers';
-import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, FormLabel, Typography, Switch, Button, makeStyles, createStyles } from '@material-ui/core';
+import { Grid, TextField, FormControl, InputLabel, Select, MenuItem, Button, makeStyles, createStyles } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
 import { Pairing, Species } from './types';
+import { GenomeFormatSelector } from './GenomeFormatSelector';
 
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -31,9 +32,6 @@ export const Calculator = () => {
   const classes = useStyles();
   const flowerData = data.default.flowers;
 
-  function handleSwitch(event: React.ChangeEvent) {
-    setGenomeFormatCondensed(!genomeFormatCondensed);
-  };
   return (
     <>
       <form className={classes.root} noValidate autoComplete="off">
@@ -76,19 +74,7 @@ export const Calculator = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <FormControl>
-                <FormLabel component="legend">Genome Display Format</FormLabel>
-
-                <Typography component="div">
-                  <Grid component="label" container alignItems="center" spacing={1}>
-                    <Grid item>Binary</Grid>
-                    <Grid item>
-                      <Switch color="primary" checked={genomeFormatCondensed} onChange={handleSwitch} name="genomeFormat" />
-                    </Grid>
-                    <Grid item>Condensed</Grid>
-                  </Grid>
-                </Typography>
-              </FormControl>
+              <GenomeFormatSelector genomeFormatCondensed={genomeFormatCondensed} setGenomeFormatCondensed={setGenomeFormatCondensed} />
             </Grid>
             <Grid item xs={4}>
               <Button variant="contained" color="primary" disabled={!species} onClick={event => { setRes(possibleGenomes(parent1, parent2, species)) }}>Calculate</Button>
