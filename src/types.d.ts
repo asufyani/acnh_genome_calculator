@@ -10,7 +10,7 @@ export type Pairing = {
   parents: string[],
   offspring: Offspring[],
   species: string,
-  genomeFormatCondensed: boolean,
+  genomeFormat: GenomeFormat,
 }
 
 export type Order = 'asc' | 'desc';
@@ -24,3 +24,5 @@ export type GenomeData = {
     island?: number
   }
 }
+
+export type GenomeFormat = 'binary' | 'condensed';

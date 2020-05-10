@@ -1,14 +1,15 @@
 import React from 'react';
 import { FormControl, FormLabel, Typography, Grid, Switch } from '@material-ui/core';
+import { GenomeFormat } from './types';
 
 interface GenomeFormatSelectorProps {
-  genomeFormatCondensed: boolean;
-  setGenomeFormatCondensed: (arg0: boolean) => void;
+  genomeFormat: GenomeFormat;
+  setGenomeFormat: (arg0: GenomeFormat) => void;
 }
 
-export const GenomeFormatSelector = ({genomeFormatCondensed, setGenomeFormatCondensed} : GenomeFormatSelectorProps ) => {
+export const GenomeFormatSelector = ({genomeFormat, setGenomeFormat} : GenomeFormatSelectorProps ) => {
   function handleSwitch(_event: React.ChangeEvent) {
-    setGenomeFormatCondensed(!genomeFormatCondensed);
+    setGenomeFormat(genomeFormat === 'binary' ? 'condensed' : "binary");
   };
   return (
     <>
@@ -19,7 +20,7 @@ export const GenomeFormatSelector = ({genomeFormatCondensed, setGenomeFormatCond
           <Grid component="label" container alignItems="center" spacing={1}>
             <Grid item>Binary</Grid>
             <Grid item>
-              <Switch color="primary" checked={genomeFormatCondensed} onChange={handleSwitch} name="genomeFormat" />
+              <Switch color="primary" checked={genomeFormat === 'condensed'} onChange={handleSwitch} name="genomeFormat" />
             </Grid>
             <Grid item>Condensed</Grid>
           </Grid>

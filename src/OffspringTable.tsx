@@ -1,6 +1,6 @@
 import React from 'react';
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles, createStyles, Theme, Table, TableBody, Chip, Typography } from '@material-ui/core';
-import { Offspring, Order } from './types';
+import { Offspring, Order, GenomeFormat } from './types';
 import { stableSort, getComparator } from './tableUtils';
 type SortableKey = "genome" | "probability" | "color";
 
@@ -94,11 +94,11 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
 export interface OffspringTableProps {
   offspring: Offspring[],
-  genomeFormatCondensed: boolean,
+  genomeFormat: GenomeFormat,
   showProbability?: boolean
 }
 
-export const OffspringTable = ({ offspring, genomeFormatCondensed, showProbability = true }: OffspringTableProps) => {
+export const OffspringTable = ({ offspring, genomeFormat, showProbability = true }: OffspringTableProps) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');
@@ -120,7 +120,7 @@ export const OffspringTable = ({ offspring, genomeFormatCondensed, showProbabili
         {
           stableSort(offspring, getComparator(order, orderBy)).map(possibleOffspring => {
             return <TableRow key={possibleOffspring.genome}>
-              <TableCell align='center'>{genomeFormatCondensed ? possibleOffspring.condensedGenome : possibleOffspring.genome}</TableCell>
+              <TableCell align='center'>{genomeFormat === 'condensed' ? possibleOffspring.condensedGenome : possibleOffspring.genome}</TableCell>
               <TableCell align='center'>
                 <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.color}</Typography>} />
               </TableCell>

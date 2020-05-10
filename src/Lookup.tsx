@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
-import { Species, GenomeData, Offspring } from './types';
+import { Species, GenomeData, Offspring, GenomeFormat } from './types';
 import * as data from './flowers';
 import { getOffspringData } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
@@ -28,7 +28,7 @@ export const Lookup = () => {
   const classes = useStyles();
   const [species, setSpecies] = useState(speciesList[0] as Species);
   const [color, setColor] = useState(flowerData[species]['colors'][0] as string);
-  const [genomeFormatCondensed, setGenomeFormatCondensed] = useState(false);
+  const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
 
   let possibleGenomes = [] as Offspring[];
   const allGenomes: GenomeData = flowerData[species]['genomes'];
@@ -66,13 +66,13 @@ export const Lookup = () => {
           </FormControl>
         </Grid>
         <Grid item>
-         <GenomeFormatSelector genomeFormatCondensed={genomeFormatCondensed} setGenomeFormatCondensed={setGenomeFormatCondensed} />
+         <GenomeFormatSelector genomeFormat={genomeFormat} setGenomeFormat={setGenomeFormat} />
         </Grid>
       </Grid>
 
       <Grid container className="resultsContainer" alignItems="flex-start" alignContent="center" justify="center" spacing={0} >
         <Grid item xs={12} sm={6} md={4} xl={3} component="div">
-          <OffspringTable offspring={possibleGenomes} genomeFormatCondensed={genomeFormatCondensed} showProbability={false} />
+          <OffspringTable offspring={possibleGenomes} genomeFormat={genomeFormat} showProbability={false} />
         </Grid>
       </Grid>
     </>

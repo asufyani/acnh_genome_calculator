@@ -12,7 +12,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-export const Scenario = ({ parents, offspring, species, genomeFormatCondensed }: Pairing) => {
+export const Scenario = ({ parents, offspring, species, genomeFormat }: Pairing) => {
   const parent1ColorData = getColorData(species, parents[0]);
   const parent2ColorData = getColorData(species, parents[1]);
   const classes = useStyles();
@@ -20,15 +20,15 @@ export const Scenario = ({ parents, offspring, species, genomeFormatCondensed }:
     <Card>
       <CardHeader
         title={<>
-          <Chip style={{ backgroundColor: parent1ColorData.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{genomeFormatCondensed ? condenseGenome(parents[0]) : parents[0]}</Typography>} />
+          <Chip style={{ backgroundColor: parent1ColorData.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{genomeFormat === 'condensed' ? condenseGenome(parents[0]) : parents[0]}</Typography>} />
           {" x "}
-          <Chip style={{ backgroundColor: parent2ColorData.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{genomeFormatCondensed ? condenseGenome(parents[1]) : parents[1]}</Typography>} />
+          <Chip style={{ backgroundColor: parent2ColorData.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{genomeFormat === 'condensed' ? condenseGenome(parents[1]) : parents[1]}</Typography>} />
         </>
         }
       />
 
       <CardContent>
-        <OffspringTable offspring={offspring} genomeFormatCondensed={genomeFormatCondensed} />
+        <OffspringTable offspring={offspring} genomeFormat={genomeFormat} />
       </CardContent>
 
     </Card>

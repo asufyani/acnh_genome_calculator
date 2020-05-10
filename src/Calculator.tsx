@@ -3,7 +3,7 @@ import * as data from './flowers';
 import { Grid, TextField, Button, makeStyles, createStyles } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
-import { Pairing, Species } from './types';
+import { Pairing, Species, GenomeFormat } from './types';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
 import { SpeciesSelect } from './SpeciesSelect';
 
@@ -30,7 +30,7 @@ export const Calculator = () => {
   const [parent2, setParent2] = useState('');
   const [res, setRes] = useState([] as Pairing[]);
   const [species, setSpecies] = useState(speciesList[0] as Species);
-  const [genomeFormatCondensed, setGenomeFormatCondensed] = useState(false);
+  const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
   const classes = useStyles();
 
   return (
@@ -54,7 +54,7 @@ export const Calculator = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <GenomeFormatSelector genomeFormatCondensed={genomeFormatCondensed} setGenomeFormatCondensed={setGenomeFormatCondensed} />
+              <GenomeFormatSelector genomeFormat={genomeFormat} setGenomeFormat={setGenomeFormat} />
             </Grid>
             <Grid item xs={4}>
               <Button variant="contained" color="primary" disabled={!species} onClick={event => { setRes(possibleGenomes(parent1, parent2, species)) }}>Calculate</Button>
@@ -72,7 +72,7 @@ export const Calculator = () => {
           <Grid container spacing={3} alignItems="flex-start" alignContent="center" justify="center">
             {res.map(result => (
               <Grid item xs={12} sm={6} md={4} xl={3} key={result.parents.join('x')} component="div">
-                <Scenario key={result.parents.join('x')} parents={result.parents} offspring={result.offspring} species={species} genomeFormatCondensed={genomeFormatCondensed} />
+                <Scenario key={result.parents.join('x')} parents={result.parents} offspring={result.offspring} species={species} genomeFormat={genomeFormat} />
               </Grid>
             ))}
           </Grid>
