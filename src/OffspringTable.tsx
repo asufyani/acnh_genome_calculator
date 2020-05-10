@@ -2,6 +2,7 @@ import React from 'react';
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles, createStyles, Theme, Table, TableBody, Chip, Typography } from '@material-ui/core';
 import { Offspring, Order, GenomeFormat } from './types';
 import { stableSort, getComparator } from './tableUtils';
+import { pickGenomeString } from './flowerUtils';
 type SortableKey = "genome" | "probability" | "colorDisplayString";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -120,7 +121,7 @@ export const OffspringTable = ({ offspring, genomeFormat, showProbability = true
         {
           stableSort(offspring, getComparator(order, orderBy)).map((possibleOffspring: Offspring) => {
             return <TableRow key={possibleOffspring.genome}>
-              <TableCell align='center'>{genomeFormat === 'condensed' ? possibleOffspring.condensedGenome : possibleOffspring.genome}</TableCell>
+              <TableCell align='center'>{pickGenomeString(possibleOffspring, genomeFormat)}</TableCell>
               <TableCell align='center'>
                 <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.colorDisplayString}</Typography>} />
               </TableCell>

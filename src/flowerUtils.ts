@@ -1,5 +1,5 @@
 import * as data from './flowers';
-import { Species, GenomeData, Offspring, Pairing, Color, VariantMap, PartialOffspring } from './types';
+import { Species, GenomeData, Offspring, Pairing, Color, VariantMap, PartialOffspring, GenomeFormat } from './types';
 const memoGeneCombos: {[key: string]: string[]} = {
   '0000': ['00'],
   '0001': ['00', '01'],
@@ -96,6 +96,18 @@ function parseGenomeSet(genomeSet: string, species: Species) {
     }
   });
   return splitGenes;
+}
+
+export function pickGenomeString(offspring: Offspring, format: GenomeFormat): string {
+  switch(format) {
+    case 'binary':
+      return offspring.genome;
+    case 'condensed':
+      return offspring.condensedGenome;
+    default:
+      return '';
+
+  }
 }
 
 export function possibleGenomes(parent1: string, parent2: string, species: Species): Pairing[] {

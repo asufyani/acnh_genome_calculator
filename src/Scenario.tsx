@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, Typography, Chip, makeStyles, createStyles } from '@material-ui/core';
-import { getOffspringData } from './flowerUtils';
+import { getOffspringData, pickGenomeString } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
 import { Pairing } from './types';
 
@@ -20,9 +20,9 @@ export const Scenario = ({ parents, offspring, species, genomeFormat }: Pairing)
     <Card>
       <CardHeader
         title={<>
-          <Chip style={{ backgroundColor: parent1Data.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{genomeFormat === 'condensed' ? parent1Data.condensedGenome : parents[0]}</Typography>} />
+          <Chip style={{ backgroundColor: parent1Data.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{pickGenomeString(parent1Data, genomeFormat)}</Typography>} />
           {" x "}
-          <Chip style={{ backgroundColor: parent2Data.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{genomeFormat === 'condensed' ? parent2Data.condensedGenome : parents[1]}</Typography>} />
+          <Chip style={{ backgroundColor: parent2Data.backgroundColor }} className={classes.parentChip} label={<Typography variant='subtitle1'>{pickGenomeString(parent2Data, genomeFormat)}</Typography>} />
         </>
         }
       />
