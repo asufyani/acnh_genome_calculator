@@ -40,7 +40,7 @@ export const GenomeFormatSelector = ({genomeFormat, setGenomeFormat} : GenomeFor
           displayEmpty
           className={classes.selectEmpty}
         >
-          {['binary', 'condensed'].map(format => <MenuItem key={format} value={format}>{format}</MenuItem>)
+          {['binary', 'condensed', 'alpha'].map(format => <MenuItem key={format} value={format}>{format}</MenuItem>)
 
           }
           

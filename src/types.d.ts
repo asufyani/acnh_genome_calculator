@@ -1,5 +1,6 @@
 export type Offspring = {
   genome: string;
+  alphaGenome: string;
   condensedGenome: string;
   colorDisplayString: string;
   backgroundColor: string;
@@ -27,7 +28,7 @@ export type GenomeData = {
   }
 }
 
-export type GenomeFormat = 'binary' | 'condensed';
+export type GenomeFormat = 'binary' | 'condensed' | 'alpha';
 
 export type Color = 
   "black" 

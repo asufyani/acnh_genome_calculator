@@ -18,6 +18,23 @@ const numeral_map: {[key: number] : string} = {
   2: '11'
 }
 
+const rpair = ['r', 'R'];
+const ypair = ['y','Y'];
+const wpair = ['W','w'];
+const spair = ['s','S'];
+const rys = [rpair, ypair, spair];
+const ryw = [rpair,ypair,wpair];
+const alphaAlleles: {[key in Species]: string[][]} = {
+  rose: [ rpair, ypair, wpair, spair],
+  cosmos: [rpair, ypair, spair],
+  lily: rys,
+  pansy:ryw,
+  tulip: rys,
+  hyacinth:ryw,
+  mum:ryw,
+  windflower:[rpair, ['o', 'O'], wpair]
+}
+
 const flowers = data.default.flowers;
 const split_binary = /(?:[01]{2}(\S)){2,3}[01]{2}/;
 const condensed = /[\d]{3,4}/;
@@ -48,11 +65,24 @@ export function getColorString({color, seed, island} : {color: Color, seed? : nu
   return colorString;
 }
 
+export function getAlphaGenome(species: Species, genome: string): string {
+  const pairs = genome.split('_');
+  const alphas = alphaAlleles[species];
+  return pairs.map((pair, idx) => {
+    return pair.split('').map(digit => {
+      return alphas[idx][parseInt(digit,2)]
+    }).sort().join('');
+  }).join('-');
+  
+}
+
 export function getOffspringData(species: Species, genome: string): Offspring {
   const colorData = getColorData(species, genome);
-  const condensedGenome = condenseGenome(genome);
+  const condensedGenome = getCondensedGenome(genome);
+  const alphaGenome = getAlphaGenome(species, genome);
   return {
     genome,
+    alphaGenome,
     condensedGenome,
     species,
     ...colorData
@@ -104,6 +134,8 @@ export function pickGenomeString(offspring: Offspring, format: GenomeFormat): st
       return offspring.genome;
     case 'condensed':
       return offspring.condensedGenome;
+    case 'alpha':
+      return offspring.alphaGenome;
     default:
       return '';
 
@@ -159,7 +191,7 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
   return res;
 }
 
-export function condenseGenome(genome: string): string {
+export function getCondensedGenome(genome: string): string {
   return genome.split('_').map(allele => { return allele.split('').reduce((a: string, b: string) => { return (parseInt(a, 2) + parseInt(b, 2)).toString() }) }).join('');
 }
 

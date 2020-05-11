@@ -32,6 +32,10 @@ export const Calculator = () => {
   const [species, setSpecies] = useState(speciesList[0] as Species);
   const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
   const classes = useStyles();
+  function handleSetSpecies(species:Species) {
+    setRes([] as Pairing[]);
+    setSpecies(species);
+  }
 
   return (
     <>
@@ -48,7 +52,7 @@ export const Calculator = () => {
                   <TextField label="Parent 2" value={parent2} onChange={event => setParent2(event.target.value)} />
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                  <SpeciesSelect species={species} setSpecies={setSpecies} />
+                  <SpeciesSelect species={species} setSpecies={handleSetSpecies} />
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <GenomeFormatSelector genomeFormat={genomeFormat} setGenomeFormat={setGenomeFormat} />
