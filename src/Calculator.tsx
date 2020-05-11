@@ -39,25 +39,26 @@ export const Calculator = () => {
         <div>
 
           <Grid container alignContent="center" justify="center" spacing={0} >
-            <Grid item xs={12} md={8} lg={6} xl={4}>
+            <Grid item xs={12} xl={6}>
               <Grid container justify="center">
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={4} xl={3}>
                   <TextField label="Parent 1" value={parent1} onChange={event => setParent1(event.target.value)} helperText="e.g. 00_01_00, 010, seed red, island pink" />
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={4} xl={3}>
                   <TextField label="Parent 2" value={parent2} onChange={event => setParent2(event.target.value)} />
                 </Grid>
-                <Grid item xs={12} sm={3} md={3}>
+                <Grid item xs={12} sm={3}>
                   <SpeciesSelect species={species} setSpecies={setSpecies} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <GenomeFormatSelector genomeFormat={genomeFormat} setGenomeFormat={setGenomeFormat} />
                 </Grid>
               </Grid>
             </Grid>
 
-            <Grid item xs={12}>
-              <GenomeFormatSelector genomeFormat={genomeFormat} setGenomeFormat={setGenomeFormat} />
-            </Grid>
+
             <Grid item xs={4}>
-              <Button variant="contained" color="primary" disabled={!species} onClick={event => { setRes(possibleGenomes(parent1, parent2, species)) }}>Calculate</Button>
+              <Button variant="contained" color="primary" disabled={!species} onClick={_event => { setRes(possibleGenomes(parent1, parent2, species)) }}>Calculate</Button>
             </Grid>
           </Grid>
 

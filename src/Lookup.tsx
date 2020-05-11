@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
+import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles, Card, CardHeader, CardContent } from '@material-ui/core';
 import { Species, GenomeData, Offspring, GenomeFormat } from './types';
 import * as data from './flowers';
 import { getOffspringData } from './flowerUtils';
@@ -40,14 +40,14 @@ export const Lookup = () => {
 
   return (
     <>
-      <Grid container>
+      <Grid container justify="center">
         <Grid item>
           <SpeciesSelect species={species} setSpecies={setSpecies} />
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
             <InputLabel shrink id="color-select-label">
-              color
+              Color
             </InputLabel>
             <Select
               labelId="color-select-label"
@@ -72,7 +72,16 @@ export const Lookup = () => {
 
       <Grid container className="resultsContainer" alignItems="flex-start" alignContent="center" justify="center" spacing={0} >
         <Grid item xs={12} sm={6} md={4} xl={3} component="div">
-          <OffspringTable offspring={possibleGenomes} genomeFormat={genomeFormat} showProbability={false} />
+          <Card>
+            <CardHeader
+              title={color + " " + species}
+            >
+
+            </CardHeader>
+            <CardContent>
+              <OffspringTable offspring={possibleGenomes} genomeFormat={genomeFormat} showProbability={false} />
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
     </>

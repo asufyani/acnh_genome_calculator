@@ -26,29 +26,29 @@ interface SpeciesSelectProps {
   setSpecies: (species: Species) => void;
 }
 
-export const SpeciesSelect = ({species, setSpecies}: SpeciesSelectProps) => {
+export const SpeciesSelect = ({ species, setSpecies }: SpeciesSelectProps) => {
   const classes = useStyles();
   return (
     <>
-    <FormControl className={classes.formControl}>
-            <InputLabel shrink id="species-select-label">
-              Species
+      <FormControl className={classes.formControl}>
+        <InputLabel shrink id="species-select-label">
+          Species
             </InputLabel>
-            <Select
-              labelId="species-select-label"
-              id="species-select"
-              value={species}
-              onChange={(e: React.ChangeEvent<{ value: unknown }>) => setSpecies(e.target.value as Species)}
-              displayEmpty
-              className={classes.selectEmpty}
-            >
-              {
-                speciesList.sort().map(species => {
-                  return <MenuItem key={species} value={species}>{species}</MenuItem>
-                })
-              }
-            </Select>
-          </FormControl>
+        <Select
+          labelId="species-select-label"
+          id="species-select"
+          value={species}
+          onChange={(e: React.ChangeEvent<{ value: unknown }>) => setSpecies(e.target.value as Species)}
+          displayEmpty
+          className={classes.selectEmpty}
+        >
+          {
+            speciesList.sort().map(species => {
+              return <MenuItem key={species} value={species}>{species}</MenuItem>
+            })
+          }
+        </Select>
+      </FormControl>
     </>
   )
 }
