@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles, Card, CardHeader, CardContent } from '@material-ui/core';
-import { Species, GenomeData, Offspring, GenomeFormat } from './types';
+import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
+import { Species, GenomeData, Offspring, GenomeFormat, Color } from './types';
 import * as data from './flowers';
-import { getOffspringData } from './flowerUtils';
+import { getOffspringData, bgColors } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
 import { SpeciesSelect } from './SpeciesSelect';
+import Bubble from './Bubble';
 const flowerData = data.default.flowers;
 const speciesList = Object.keys(flowerData).sort();
 const useStyles = makeStyles((theme) => createStyles({
@@ -72,16 +73,18 @@ export const Lookup = () => {
 
       <Grid container className="resultsContainer" alignItems="flex-start" alignContent="center" justify="center" spacing={0} >
         <Grid item xs={12} sm={6} md={4} xl={3} component="div">
-          <Card>
-            <CardHeader
-              title={color + " " + species}
-            >
+              <Bubble
+                headers={[{
+                  backgroundColor: bgColors[color as Color],
+                  key: 'key',
+                  text: color + ' ' + species
+                }]}
+                resultsTable={
 
-            </CardHeader>
-            <CardContent>
-              <OffspringTable offspring={possibleGenomes} genomeFormat={genomeFormat} showProbability={false} />
-            </CardContent>
-          </Card>
+                  <OffspringTable offspring={possibleGenomes} genomeFormat={genomeFormat} showProbability={false} />
+                }
+                />
+
         </Grid>
       </Grid>
     </>

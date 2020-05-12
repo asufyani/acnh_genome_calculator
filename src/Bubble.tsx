@@ -1,22 +1,23 @@
 import React from 'react';
-import { Offspring, GenomeFormat } from './types';
-import { pickGenomeString } from './flowerUtils';
 
-interface ResultsBubbleProps {
-  parent1: Offspring;
-  parent2: Offspring;
-  resultsTable: React.ReactElement;
-  genomeFormat: GenomeFormat;
+interface HeaderProps {
+  text: string;
+  backgroundColor: string;
+  key: string;
 }
-export const Bubble = ({ parent1, parent2, resultsTable, genomeFormat }: ResultsBubbleProps) => {
+interface ResultsBubbleProps {
+  headers: HeaderProps[];
+  resultsTable: React.ReactElement;
+}
+export const Bubble = ({ headers, resultsTable }: ResultsBubbleProps) => {
 
   return (
     <>
       <div className="dialogue-character-wrap">
-        { [parent1, parent2].map((parent) => {
+        { headers.map(({backgroundColor, key, text}) => {
             return (
-              <div className="dialogue-character" style={{ backgroundColor: parent.backgroundColor }} key={parent.genome}>
-                <slot name="character">{pickGenomeString(parent, genomeFormat)}</slot>
+              <div className="dialogue-character" style={{ backgroundColor }} key={key}>
+                <slot name="character"><b>{text}</b></slot>
               </div>
             )
           }) }

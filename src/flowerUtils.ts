@@ -89,8 +89,8 @@ export function getOffspringData(species: Species, genome: string): Offspring {
   } as Offspring;
 }
 
-const bgColors = {
-  "black": '#666',
+export const bgColors: {[key in Color]: string} = {
+  "black": '#999',
   "blue": '#36f',
   "orange": '#f93',
   "red": "#f33",
@@ -128,14 +128,14 @@ function parseGenomeSet(genomeSet: string, species: Species) {
   return splitGenes;
 }
 
-export function pickGenomeString(offspring: Offspring, format: GenomeFormat): string {
+export function pickGenomeString(offspring: PartialOffspring, format: GenomeFormat): string {
   switch(format) {
     case 'binary':
-      return offspring.genome;
+      return offspring.genome!;
     case 'condensed':
-      return offspring.condensedGenome;
+      return offspring.condensedGenome!;
     case 'alpha':
-      return offspring.alphaGenome;
+      return offspring.alphaGenome!;
     default:
       return '';
 
