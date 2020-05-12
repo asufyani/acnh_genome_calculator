@@ -50,8 +50,19 @@ function App() {
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
-  const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
-  const [probabilityFormat, setProbabilityFormat] = useState('decimal' as ProbabilityFormat);
+  const [genomeFormat, _setGenomeFormat] = useState((localStorage.getItem('acnh_calc_genome_format') || 'binary') as GenomeFormat);
+  const [probabilityFormat, _setProbabilityFormat] = useState((localStorage.getItem('acnh_calc_prob_format') || 'decimal') as ProbabilityFormat);
+
+  const setProbabilityFormat = (format: ProbabilityFormat): void => {
+    _setProbabilityFormat(format);
+    localStorage.setItem('acnh_calc_prob_format', format); 
+  }
+
+  const setGenomeFormat = (format: GenomeFormat): void => {
+    _setGenomeFormat(format);
+    localStorage.setItem('acnh_calc_genome_format', format);
+  }
+
   return (
     <>
       <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet" type="text/css"></link>
