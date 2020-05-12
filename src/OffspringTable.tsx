@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     offspringChip: {
       width: '100%',
-      border: '1px solid black'
+      border: '1px solid black',
+      fontWeight: 'bold'
     },
     root: {
       width: '100%',

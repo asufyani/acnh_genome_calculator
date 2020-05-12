@@ -4,9 +4,14 @@ import './bubble.scss';
 import Calculator from './Calculator';
 import Lookup from './Lookup';
 import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { purple } from '@material-ui/core/colors';
 import { GenomeFormat, ProbabilityFormat, Pairing, Species, Color } from './types';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
 import { ProbabilityFormatSelector } from './ProbabilityFormatSelector';
+import AccountTreeIcon from '@material-ui/icons/AccountTreeRounded';
+import SearchIcon from '@material-ui/icons/Search';
+import SettingsIcon from '@material-ui/icons/Settings';
+
 import * as data from './flowers';
 
 interface TabPanelProps {
@@ -18,6 +23,18 @@ interface TabPanelProps {
 const theme = createMuiTheme({
   typography: {
     fontFamily: 'Quicksand',
+    fontSize: 12,
+    fontWeightBold: 'bold'
+  },
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: purple[500],
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
   },
 });
 
@@ -77,7 +94,7 @@ function App() {
       <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet" type="text/css"></link>
       <ThemeProvider theme={theme}>
         <div className="App">
-          <AppBar position="static" color="default">
+          <AppBar position="static" color="secondary">
             <Tabs
               value={value}
               onChange={handleChange}
@@ -87,9 +104,9 @@ function App() {
               scrollButtons="auto"
               aria-label="scrollable auto tabs example"
             >
-              <Tab label="Calculator" {...a11yProps(0)} />
-              <Tab label="Lookup" {...a11yProps(1)} />
-              <Tab label="Settings" {...a11yProps(2)} />
+              <Tab label="Offspring" icon={<AccountTreeIcon/>} {...a11yProps(0)} />
+              <Tab label="Lookup" icon={<SearchIcon/>} {...a11yProps(1)} />
+              <Tab label="Settings" icon={<SettingsIcon/>} {...a11yProps(2)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>

@@ -1,6 +1,6 @@
 import * as data from './flowers';
 import { Species, GenomeData, Offspring, Pairing, Color, VariantMap, PartialOffspring, GenomeFormat, ProbabilityFormat } from './types';
-const memoGeneCombos: {[key: string]: string[]} = {
+const memoGeneCombos: { [key: string]: string[] } = {
   '0000': ['00'],
   '0001': ['00', '01'],
   '0011': ['01'],
@@ -12,27 +12,27 @@ const memoGeneCombos: {[key: string]: string[]} = {
   '1111': ['11']
 };
 
-const numeral_map: {[key: number] : string} = {
+const numeral_map: { [key: number]: string } = {
   0: '00',
   1: '01',
   2: '11'
 }
 
 const rpair = ['r', 'R'];
-const ypair = ['y','Y'];
-const wpair = ['W','w'];
-const spair = ['s','S'];
+const ypair = ['y', 'Y'];
+const wpair = ['W', 'w'];
+const spair = ['s', 'S'];
 const rys = [rpair, ypair, spair];
-const ryw = [rpair,ypair,wpair];
-const alphaAlleles: {[key in Species]: string[][]} = {
-  rose: [ rpair, ypair, wpair, spair],
+const ryw = [rpair, ypair, wpair];
+const alphaAlleles: { [key in Species]: string[][] } = {
+  rose: [rpair, ypair, wpair, spair],
   cosmos: [rpair, ypair, spair],
   lily: rys,
-  pansy:ryw,
+  pansy: ryw,
   tulip: rys,
-  hyacinth:ryw,
-  mum:ryw,
-  windflower:[rpair, ['o', 'O'], wpair]
+  hyacinth: ryw,
+  mum: ryw,
+  windflower: [rpair, ['o', 'O'], wpair]
 }
 
 const flowers = data.default.flowers;
@@ -54,7 +54,7 @@ export function getColorData(species: Species, genome: string): PartialOffspring
   return colorData;
 }
 
-export function getColorString({color, seed, island} : {color: Color, seed? : number, island?: number}): string {
+export function getColorString({ color, seed, island }: { color: Color, seed?: number, island?: number }): string {
   let colorString = color;
   if (island) {
     colorString += " (island)";
@@ -70,10 +70,10 @@ export function getAlphaGenome(species: Species, genome: string): string {
   const alphas = alphaAlleles[species];
   return pairs.map((pair, idx) => {
     return pair.split('').map(digit => {
-      return alphas[idx][parseInt(digit,2)]
+      return alphas[idx][parseInt(digit, 2)]
     }).sort().join('');
   }).join('-');
-  
+
 }
 
 export function getOffspringData(species: Species, genome: string): Offspring {
@@ -89,13 +89,13 @@ export function getOffspringData(species: Species, genome: string): Offspring {
   } as Offspring;
 }
 
-export const bgColors: {[key in Color]: string} = {
+export const bgColors: { [key in Color]: string } = {
   "black": '#999',
   "blue": '#36f',
   "orange": '#f93',
   "red": "#f33",
   "yellow": "#ff3",
-  "purple": "#63f",
+  "purple": "#96f",
   "green": "#9c0",
   "pink": "#f9f",
   "white": "#fff",
@@ -115,7 +115,7 @@ function parseGenomeSet(genomeSet: string, species: Species) {
     }
     const condensed_match = condensed.exec(genome);
     if (!split_match && condensed_match && condensed_match[0]) {
-      gene = genome.split('').map((numeral: string): string => numeral_map[parseInt(numeral,3)])
+      gene = genome.split('').map((numeral: string): string => numeral_map[parseInt(numeral, 3)])
       splitGenes.push(gene);
     }
     const word_match = words.exec(genome);
@@ -123,7 +123,7 @@ function parseGenomeSet(genomeSet: string, species: Species) {
       const parts = genome.toLowerCase().split(' ');
       const variant = parts[0];
       const color = parts[1];
-      const variantData: VariantMap = flowers[species][variant as 'seed'|'island'];
+      const variantData: VariantMap = flowers[species][variant as 'seed' | 'island'];
       const variant_genome = variantData[color];
       gene = variant_genome.split('_')
       splitGenes.push(gene);
@@ -140,7 +140,7 @@ function checkGene(gene: string[], species: Species) {
 }
 
 export function pickGenomeString(offspring: PartialOffspring, format: GenomeFormat): string {
-  switch(format) {
+  switch (format) {
     case 'binary':
       return offspring.genome!;
     case 'condensed':
@@ -153,7 +153,7 @@ export function pickGenomeString(offspring: PartialOffspring, format: GenomeForm
   }
 }
 
-export function possibleGenomes(parent1: string, parent2: string, species: Species): {res: Pairing[], error?: Error} {
+export function possibleGenomes(parent1: string, parent2: string, species: Species): { res: Pairing[], error?: Error } {
   // if (parent1 === '') {
   //   return parent2;
   // }
@@ -164,67 +164,67 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
   try {
     const splitGenes1 = parseGenomeSet(parent1, species);
     const splitGenes2 = parseGenomeSet(parent2, species);
- 
 
-  // Combine the possible genes of the parents
-  let childGenomesPerParents: {[key: string]: string[]} = {};
-  splitGenes1.forEach(genome1 => {
-    splitGenes2.forEach(genome2 => {
-      let allelesForEachGene = [];
-      for (let i = 0; i < genome1.length; i++) {
-        const geneCombo = genome1[i] + genome2[i];
-        allelesForEachGene.push(memoGeneCombos[geneCombo]);
-      }
-      let possibleChildGenomes = createPossibleGenomeList(allelesForEachGene);
-      childGenomesPerParents[genome1.join('_') + ',' + genome2.join('_')] = possibleChildGenomes;
-    })
-  });
-  // Massage the data to be displayed in the sheet.
-  let res = [] as Pairing[];
-  Object.keys(childGenomesPerParents).forEach(parentCombo => {
-    let result = {} as Pairing;
-    let parents = parentCombo.split(',');
-    result.parents = parents;
-    result.offspring = [];
-    let genomeOccurrences: {[key: string]: number} = {};
-    let genomeCount = 0;
-    childGenomesPerParents[parentCombo].forEach(childGenome => {
-      genomeOccurrences[childGenome] = genomeOccurrences[childGenome] ? genomeOccurrences[childGenome] + 1 : 1;
-      genomeCount++;
+
+    // Combine the possible genes of the parents
+    let childGenomesPerParents: { [key: string]: string[] } = {};
+    splitGenes1.forEach(genome1 => {
+      splitGenes2.forEach(genome2 => {
+        let allelesForEachGene = [];
+        for (let i = 0; i < genome1.length; i++) {
+          const geneCombo = genome1[i] + genome2[i];
+          allelesForEachGene.push(memoGeneCombos[geneCombo]);
+        }
+        let possibleChildGenomes = createPossibleGenomeList(allelesForEachGene);
+        childGenomesPerParents[genome1.join('_') + ',' + genome2.join('_')] = possibleChildGenomes;
+      })
     });
-    Object.keys(genomeOccurrences).sort().forEach(dedupedGenome => {
-      const offspringData = getOffspringData(species, dedupedGenome)
-      result.offspring.push({
-        probability: genomeOccurrences[dedupedGenome]/genomeCount,
-        ...offspringData
+    // Massage the data to be displayed in the sheet.
+    let res = [] as Pairing[];
+    Object.keys(childGenomesPerParents).forEach(parentCombo => {
+      let result = {} as Pairing;
+      let parents = parentCombo.split(',');
+      result.parents = parents;
+      result.offspring = [];
+      let genomeOccurrences: { [key: string]: number } = {};
+      let genomeCount = 0;
+      childGenomesPerParents[parentCombo].forEach(childGenome => {
+        genomeOccurrences[childGenome] = genomeOccurrences[childGenome] ? genomeOccurrences[childGenome] + 1 : 1;
+        genomeCount++;
       });
+      Object.keys(genomeOccurrences).sort().forEach(dedupedGenome => {
+        const offspringData = getOffspringData(species, dedupedGenome)
+        result.offspring.push({
+          probability: genomeOccurrences[dedupedGenome] / genomeCount,
+          ...offspringData
+        });
+      });
+      res.push(result);
     });
-    res.push(result);
-  });
-  return { res };
-} catch (e) {
+    return { res };
+  } catch (e) {
     return {
       res: [],
       error: e
     }
-}
+  }
 }
 
 function gcd(a: number, b: number): number {
   if (b === 0) {
-      return a;
+    return a;
   }
   return gcd(b, a % b);
 };
 
-export function getProbability({probability}: Offspring, format: ProbabilityFormat) {
+export function getProbability({ probability }: Offspring, format: ProbabilityFormat) {
   if (format === 'decimal') {
     return (probability * 100) + '%';
   }
   else {
-    const divisor = gcd(probability*256, 256);
-    const denominator = 256/divisor;
-    return probability*denominator+':'+ denominator;
+    const divisor = gcd(probability * 256, 256);
+    const denominator = 256 / divisor;
+    return probability * denominator + ':' + denominator;
   }
 }
 
