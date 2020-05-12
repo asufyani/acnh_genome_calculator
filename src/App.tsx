@@ -100,9 +100,8 @@ function App() {
               onChange={handleChange}
               indicatorColor="primary"
               textColor="primary"
-              variant="scrollable"
-              scrollButtons="auto"
               aria-label="scrollable auto tabs example"
+              centered
             >
               <Tab label="Offspring" icon={<AccountTreeIcon/>} {...a11yProps(0)} />
               <Tab label="Lookup" icon={<SearchIcon/>} {...a11yProps(1)} />
