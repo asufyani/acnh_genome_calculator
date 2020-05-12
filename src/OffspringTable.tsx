@@ -52,7 +52,7 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { classes, order, orderBy, onRequestSort, showProbability=true } = props;
+  const { classes, order, orderBy, onRequestSort, showProbability = true } = props;
   const createSortHandler = (property: SortableKey) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
