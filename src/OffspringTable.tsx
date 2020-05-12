@@ -1,8 +1,8 @@
 import React from 'react';
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles, createStyles, Theme, Table, TableBody, Chip, Typography } from '@material-ui/core';
-import { Offspring, Order, GenomeFormat } from './types';
+import { Offspring, Order, GenomeFormat, ProbabilityFormat } from './types';
 import { stableSort, getComparator } from './tableUtils';
-import { pickGenomeString } from './flowerUtils';
+import { pickGenomeString, getProbability } from './flowerUtils';
 type SortableKey = "genome" | "probability" | "colorDisplayString";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -96,10 +96,11 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 export interface OffspringTableProps {
   offspring: Offspring[],
   genomeFormat: GenomeFormat,
-  showProbability?: boolean
+  showProbability?: boolean,
+  probabilityFormat?: ProbabilityFormat,
 }
 
-export const OffspringTable = ({ offspring, genomeFormat, showProbability = true }: OffspringTableProps) => {
+export const OffspringTable = ({ offspring, genomeFormat, showProbability = true, probabilityFormat='decimal' }: OffspringTableProps) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');
@@ -125,7 +126,7 @@ export const OffspringTable = ({ offspring, genomeFormat, showProbability = true
               <TableCell align='center'>
                 <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.colorDisplayString}</Typography>} />
               </TableCell>
-              {showProbability && <TableCell align='center'>{possibleOffspring.probability * 100 + '%'}</TableCell>}
+              {showProbability && <TableCell align='center'>{getProbability(possibleOffspring, probabilityFormat)}</TableCell>}
             </TableRow>
           })}
       </TableBody>

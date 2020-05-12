@@ -4,6 +4,9 @@ import './bubble.scss';
 import Calculator from './Calculator';
 import Lookup from './Lookup';
 import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { GenomeFormat, ProbabilityFormat } from './types';
+import { GenomeFormatSelector } from './GenomeFormatSelector';
+import { ProbabilityFormatSelector } from './ProbabilityFormatSelector';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -47,7 +50,8 @@ function App() {
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
-
+  const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
+  const [probabilityFormat, setProbabilityFormat] = useState('decimal' as ProbabilityFormat);
   return (
     <>
       <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet" type="text/css"></link>
@@ -65,13 +69,24 @@ function App() {
             >
               <Tab label="Calculator" {...a11yProps(0)} />
               <Tab label="Lookup" {...a11yProps(1)} />
+              <Tab label="Settings" {...a11yProps(2)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            <Calculator />
+            <Calculator genomeFormat={genomeFormat} probabilityFormat={probabilityFormat}/>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Lookup />
+            <Lookup genomeFormat={genomeFormat}/>
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+              <GenomeFormatSelector 
+                genomeFormat={genomeFormat}
+                setGenomeFormat={setGenomeFormat}
+              />
+              <ProbabilityFormatSelector
+                probabilityFormat={probabilityFormat}
+                setProbabilityFormat={setProbabilityFormat}
+                />
           </TabPanel>
         </div>
       </ThemeProvider>

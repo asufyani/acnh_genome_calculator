@@ -3,8 +3,7 @@ import * as data from './flowers';
 import { Grid, TextField, Button, makeStyles, createStyles } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
-import { Pairing, Species, GenomeFormat } from './types';
-import { GenomeFormatSelector } from './GenomeFormatSelector';
+import { Pairing, Species, GenomeFormat, ProbabilityFormat } from './types';
 import { SpeciesSelect } from './SpeciesSelect';
 
 
@@ -24,13 +23,12 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }));
 
-export const Calculator = () => {
+export const Calculator = ({genomeFormat, probabilityFormat}: {genomeFormat: GenomeFormat, probabilityFormat: ProbabilityFormat}) => {
   const speciesList = Object.keys(data.default.flowers).sort();
   const [parent1, setParent1] = useState('');
   const [parent2, setParent2] = useState('');
   const [res, setRes] = useState([] as Pairing[]);
   const [species, setSpecies] = useState(speciesList[0] as Species);
-  const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
   const classes = useStyles();
   function handleSetSpecies(species:Species) {
     setRes([] as Pairing[]);
@@ -54,9 +52,6 @@ export const Calculator = () => {
                 <Grid item xs={12} sm={3}>
                   <SpeciesSelect species={species} setSpecies={handleSetSpecies} />
                 </Grid>
-                <Grid item xs={12} sm={3}>
-                  <GenomeFormatSelector genomeFormat={genomeFormat} setGenomeFormat={setGenomeFormat} />
-                </Grid>
               </Grid>
             </Grid>
 
@@ -77,7 +72,7 @@ export const Calculator = () => {
           <Grid container spacing={3} alignItems="flex-start" alignContent="center" justify="center">
             {res.map(result => (
               <Grid item xs={12} sm={6} md={4} xl={3} key={result.parents.join('x')} component="div">
-                <Scenario key={result.parents.join('x')} parents={result.parents} offspring={result.offspring} species={species} genomeFormat={genomeFormat} />
+                <Scenario key={result.parents.join('x')} parents={result.parents} offspring={result.offspring} species={species} genomeFormat={genomeFormat} probabilityFormat={probabilityFormat} />
               </Grid>
             ))}
           </Grid>

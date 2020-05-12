@@ -4,7 +4,7 @@ import { OffspringTable } from './OffspringTable';
 import { Pairing } from './types';
 import { Bubble } from './Bubble';
 
-export const Scenario = ({ parents, offspring, species, genomeFormat }: Pairing) => {
+export const Scenario = ({ parents, offspring, species, genomeFormat, probabilityFormat }: Pairing) => {
   const parent1Data = getOffspringData(species, parents[0]);
   const parent2Data = getOffspringData(species, parents[1]);
   const headers=[parent1Data,parent2Data].map((parent) => {
@@ -17,7 +17,7 @@ export const Scenario = ({ parents, offspring, species, genomeFormat }: Pairing)
   return (
     <Bubble
       headers={headers}
-      resultsTable={<OffspringTable offspring={offspring} genomeFormat={genomeFormat} />}
+      resultsTable={<OffspringTable offspring={offspring} genomeFormat={genomeFormat} probabilityFormat={probabilityFormat} />}
     />
   )
 }

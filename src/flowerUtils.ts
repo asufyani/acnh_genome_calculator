@@ -1,5 +1,5 @@
 import * as data from './flowers';
-import { Species, GenomeData, Offspring, Pairing, Color, VariantMap, PartialOffspring, GenomeFormat } from './types';
+import { Species, GenomeData, Offspring, Pairing, Color, VariantMap, PartialOffspring, GenomeFormat, ProbabilityFormat } from './types';
 const memoGeneCombos: {[key: string]: string[]} = {
   '0000': ['00'],
   '0001': ['00', '01'],
@@ -182,13 +182,31 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
     Object.keys(genomeOccurrences).sort().forEach(dedupedGenome => {
       const offspringData = getOffspringData(species, dedupedGenome)
       result.offspring.push({
-        probability: genomeOccurrences[dedupedGenome] / genomeCount,
+        probability: genomeOccurrences[dedupedGenome]/genomeCount,
         ...offspringData
       });
     });
     res.push(result);
   });
   return res;
+}
+
+function gcd(a: number, b: number): number {
+  if (b === 0) {
+      return a;
+  }
+  return gcd(b, a % b);
+};
+
+export function getProbability({probability}: Offspring, format: ProbabilityFormat) {
+  if (format === 'decimal') {
+    return (probability * 100) + '%';
+  }
+  else {
+    const divisor = gcd(probability*256, 256);
+    const denominator = 256/divisor;
+    return probability*denominator+':'+ denominator;
+  }
 }
 
 export function getCondensedGenome(genome: string): string {

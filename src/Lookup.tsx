@@ -4,7 +4,6 @@ import { Species, GenomeData, Offspring, GenomeFormat, Color } from './types';
 import * as data from './flowers';
 import { getOffspringData, bgColors } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
-import { GenomeFormatSelector } from './GenomeFormatSelector';
 import { SpeciesSelect } from './SpeciesSelect';
 import Bubble from './Bubble';
 const flowerData = data.default.flowers;
@@ -25,11 +24,10 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }));
 
-export const Lookup = () => {
+export const Lookup = ({genomeFormat}: {genomeFormat: GenomeFormat}) => {
   const classes = useStyles();
   const [species, setSpecies] = useState(speciesList[0] as Species);
   const [color, setColor] = useState(flowerData[species]['colors'][0] as string);
-  const [genomeFormat, setGenomeFormat] = useState('binary' as GenomeFormat);
 
   let possibleGenomes = [] as Offspring[];
   const allGenomes = flowerData[species]['genomes'] as GenomeData;
@@ -65,9 +63,6 @@ export const Lookup = () => {
               }
             </Select>
           </FormControl>
-        </Grid>
-        <Grid item>
-         <GenomeFormatSelector genomeFormat={genomeFormat} setGenomeFormat={setGenomeFormat} />
         </Grid>
       </Grid>
 

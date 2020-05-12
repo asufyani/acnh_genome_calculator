@@ -14,6 +14,7 @@ export type Pairing = {
   offspring: Offspring[],
   species: Species,
   genomeFormat: GenomeFormat,
+  probabilityFormat: ProbabilityFormat,
 }
 
 export type Order = 'asc' | 'desc';
@@ -29,6 +30,7 @@ export type GenomeData = {
 }
 
 export type GenomeFormat = 'binary' | 'condensed' | 'alpha';
+export type ProbabilityFormat = 'decimal' | 'fraction';
 
 export type Color = 
   "black" 
