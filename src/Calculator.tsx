@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Grid, TextField, Button, makeStyles, createStyles } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
@@ -37,10 +37,23 @@ interface CalculatorProps {
 
 export const Calculator = ({genomeFormat, probabilityFormat, parent1, parent2, setParent1, setParent2, res, setRes, species, setSpecies}: CalculatorProps) => {
   const classes = useStyles();
+  const [err, setErr] = useState('');
   function handleSetSpecies(species:Species) {
     setRes([] as Pairing[]);
     setSpecies(species);
   }
+
+  function handleCalculate(_event:React.MouseEvent): void {
+    setErr('');
+    const result = possibleGenomes(parent1, parent2, species);
+    if (result.error) {
+      setErr(result.error.message);
+      setRes([]);
+    }
+    else {
+      setRes(result.res);
+    }
+  };
 
   return (
     <>
@@ -64,7 +77,7 @@ export const Calculator = ({genomeFormat, probabilityFormat, parent1, parent2, s
 
 
             <Grid item xs={4}>
-              <Button variant="contained" color="primary" disabled={!species} onClick={_event => { setRes(possibleGenomes(parent1, parent2, species)) }}>Calculate</Button>
+              <Button variant="contained" color="primary" disabled={!species} onClick={handleCalculate}>Calculate</Button>
             </Grid>
           </Grid>
 
@@ -77,6 +90,7 @@ export const Calculator = ({genomeFormat, probabilityFormat, parent1, parent2, s
       <Grid container className="resultsContainer" alignItems="flex-start" alignContent="center" justify="center" spacing={0} >
         <Grid item xs={12}>
           <Grid container spacing={3} alignItems="flex-start" alignContent="center" justify="center">
+            {err}
             {res.map(result => (
               <Grid item xs={12} sm={6} md={4} xl={3} key={result.parents.join('x')} component="div">
                 <Scenario key={result.parents.join('x')} parents={result.parents} offspring={result.offspring} species={species} genomeFormat={genomeFormat} probabilityFormat={probabilityFormat} />

@@ -108,12 +108,15 @@ function parseGenomeSet(genomeSet: string, species: Species) {
   genomes.forEach(rawGenome => {
     const genome = rawGenome.trim();
     const split_match = split_binary.exec(genome);
+    let gene = [] as string[];
     if (split_match && split_match[1]) {
-      splitGenes.push(genome.split(split_match[1]));
+      gene = genome.split(split_match[1]);
+      splitGenes.push(gene);
     }
     const condensed_match = condensed.exec(genome);
     if (!split_match && condensed_match && condensed_match[0]) {
-      splitGenes.push(genome.split('').map((numeral: string): string => numeral_map[parseInt(numeral,3)]));
+      gene = genome.split('').map((numeral: string): string => numeral_map[parseInt(numeral,3)])
+      splitGenes.push(gene);
     }
     const word_match = words.exec(genome);
     if (word_match) {
@@ -122,10 +125,18 @@ function parseGenomeSet(genomeSet: string, species: Species) {
       const color = parts[1];
       const variantData: VariantMap = flowers[species][variant as 'seed'|'island'];
       const variant_genome = variantData[color];
-      splitGenes.push(variant_genome.split('_'));
+      gene = variant_genome.split('_')
+      splitGenes.push(gene);
+    }
+    if (!checkGene(gene, species)) {
+      throw new Error(`Could not parse parent ${rawGenome} for species ${species}`);
     }
   });
   return splitGenes;
+}
+
+function checkGene(gene: string[], species: Species) {
+  return gene.length === alphaAlleles[species].length;
 }
 
 export function pickGenomeString(offspring: PartialOffspring, format: GenomeFormat): string {
@@ -142,7 +153,7 @@ export function pickGenomeString(offspring: PartialOffspring, format: GenomeForm
   }
 }
 
-export function possibleGenomes(parent1: string, parent2: string, species: Species): Pairing[] {
+export function possibleGenomes(parent1: string, parent2: string, species: Species): {res: Pairing[], error?: Error} {
   // if (parent1 === '') {
   //   return parent2;
   // }
@@ -150,8 +161,10 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
   //   return parent1;
   // }
   // Split up the parents into their possible genes
-  const splitGenes1 = parseGenomeSet(parent1, species);
-  const splitGenes2 = parseGenomeSet(parent2, species);
+  try {
+    const splitGenes1 = parseGenomeSet(parent1, species);
+    const splitGenes2 = parseGenomeSet(parent2, species);
+ 
 
   // Combine the possible genes of the parents
   let childGenomesPerParents: {[key: string]: string[]} = {};
@@ -188,7 +201,13 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
     });
     res.push(result);
   });
-  return res;
+  return { res };
+} catch (e) {
+    return {
+      res: [],
+      error: e
+    }
+}
 }
 
 function gcd(a: number, b: number): number {
