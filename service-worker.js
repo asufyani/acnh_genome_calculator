@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/acnh_genome_calculator/precache-manifest.8e2a4e52e6bd964a4dc45e35c6478a2f.js"
+  "/acnh_genome_calculator/precache-manifest.475866398853548702a7632c1e104d62.js"
 );
 
 self.addEventListener('message', (event) => {
