@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
 import { Species, GenomeData, Offspring, GenomeFormat, Color } from './types';
 import * as data from './flowers';
@@ -7,7 +7,6 @@ import { OffspringTable } from './OffspringTable';
 import { SpeciesSelect } from './SpeciesSelect';
 import Bubble from './Bubble';
 const flowerData = data.default.flowers;
-const speciesList = Object.keys(flowerData).sort();
 const useStyles = makeStyles((theme) => createStyles({
   formControl: {
     margin: theme.spacing(1),
@@ -24,10 +23,16 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }));
 
-export const Lookup = ({genomeFormat}: {genomeFormat: GenomeFormat}) => {
+interface LookupProps {
+  genomeFormat: GenomeFormat;
+  species: Species;
+  setSpecies: (arg0: Species) => void;
+  color: Color;
+  setColor: (arg0: Color) => void;
+}
+
+export const Lookup = ({genomeFormat, species, setSpecies, color, setColor}: LookupProps) => {
   const classes = useStyles();
-  const [species, setSpecies] = useState(speciesList[0] as Species);
-  const [color, setColor] = useState(flowerData[species]['colors'][0] as string);
 
   let possibleGenomes = [] as Offspring[];
   const allGenomes = flowerData[species]['genomes'] as GenomeData;
@@ -52,7 +57,7 @@ export const Lookup = ({genomeFormat}: {genomeFormat: GenomeFormat}) => {
               labelId="color-select-label"
               id="color-select"
               value={color}
-              onChange={(e: React.ChangeEvent<{ value: unknown }>) => setColor(e.target.value as string)}
+              onChange={(e: React.ChangeEvent<{ value: unknown }>) => setColor(e.target.value as Color)}
               displayEmpty
               className={classes.selectEmpty}
             >

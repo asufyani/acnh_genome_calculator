@@ -4,9 +4,10 @@ import './bubble.scss';
 import Calculator from './Calculator';
 import Lookup from './Lookup';
 import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider } from '@material-ui/core';
-import { GenomeFormat, ProbabilityFormat } from './types';
+import { GenomeFormat, ProbabilityFormat, Pairing, Species, Color } from './types';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
 import { ProbabilityFormatSelector } from './ProbabilityFormatSelector';
+import * as data from './flowers';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,6 +53,14 @@ function App() {
   };
   const [genomeFormat, _setGenomeFormat] = useState((localStorage.getItem('acnh_calc_genome_format') || 'binary') as GenomeFormat);
   const [probabilityFormat, _setProbabilityFormat] = useState((localStorage.getItem('acnh_calc_prob_format') || 'decimal') as ProbabilityFormat);
+  const [parent1, setParent1] = useState('');
+  const [parent2, setParent2] = useState('');
+  const [res, setRes] = useState([] as Pairing[]);
+  const speciesList = Object.keys(data.default.flowers).sort();
+  const [species, setSpecies] = useState(speciesList[0] as Species);
+  const [color, setColor] = useState(data.default.flowers[species]['colors'][0] as Color);
+
+
 
   const setProbabilityFormat = (format: ProbabilityFormat): void => {
     _setProbabilityFormat(format);
@@ -84,10 +93,27 @@ function App() {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            <Calculator genomeFormat={genomeFormat} probabilityFormat={probabilityFormat}/>
+            <Calculator 
+              genomeFormat={genomeFormat} 
+              probabilityFormat={probabilityFormat}
+              parent1={parent1}
+              parent2={parent2}
+              setParent1={setParent1}
+              setParent2={setParent2}
+              res={res}
+              setRes={setRes}
+              species={species}
+              setSpecies={setSpecies}
+            />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Lookup genomeFormat={genomeFormat}/>
+            <Lookup 
+              genomeFormat={genomeFormat} 
+              species={species} 
+              setSpecies={setSpecies}
+              color={color}
+              setColor={setColor}
+            />
           </TabPanel>
           <TabPanel value={value} index={2}>
               <GenomeFormatSelector 
