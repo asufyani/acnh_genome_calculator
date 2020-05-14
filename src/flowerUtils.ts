@@ -218,7 +218,7 @@ function gcd(a: number, b: number): number {
 };
 
 export function getProbability({ probability }: Offspring, format: ProbabilityFormat) {
-  if (format === 'decimal') {
+  if (format === 'percentage') {
     return (probability * 100) + '%';
   }
   else {

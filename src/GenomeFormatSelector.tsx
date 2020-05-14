@@ -30,7 +30,7 @@ export const GenomeFormatSelector = ({genomeFormat, setGenomeFormat} : GenomeFor
     <>
       <FormControl className={classes.formControl}>
         <InputLabel shrink id="format-select-label">
-          Display Format
+          Genome Display
         </InputLabel>
         <Select
           labelId="species-select-label"

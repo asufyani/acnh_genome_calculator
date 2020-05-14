@@ -101,7 +101,7 @@ export interface OffspringTableProps {
   probabilityFormat?: ProbabilityFormat,
 }
 
-export const OffspringTable = ({ offspring, genomeFormat, showProbability = true, probabilityFormat='decimal' }: OffspringTableProps) => {
+export const OffspringTable = ({ offspring, genomeFormat, showProbability = true, probabilityFormat='percentage' }: OffspringTableProps) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');

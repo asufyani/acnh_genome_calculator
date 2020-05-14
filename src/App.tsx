@@ -3,6 +3,7 @@ import './App.css';
 import './bubble.scss';
 import Calculator from './Calculator';
 import Lookup from './Lookup';
+import SwipeableViews from 'react-swipeable-views';
 import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import { GenomeFormat, ProbabilityFormat, Pairing, Species, Color } from './types';
@@ -38,24 +39,6 @@ const theme = createMuiTheme({
   },
 });
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <>{children}</>
-      )}
-    </div>
-  );
-}
-
 function App() {
   const [value, setValue] = useState(0);
   function a11yProps(index: any) {
@@ -68,8 +51,12 @@ function App() {
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
+
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
+  }
   const [genomeFormat, _setGenomeFormat] = useState((localStorage.getItem('acnh_calc_genome_format') || 'binary') as GenomeFormat);
-  const [probabilityFormat, _setProbabilityFormat] = useState((localStorage.getItem('acnh_calc_prob_format') || 'decimal') as ProbabilityFormat);
+  const [probabilityFormat, _setProbabilityFormat] = useState((localStorage.getItem('acnh_calc_prob_format') || 'percentage') as ProbabilityFormat);
   const [parent1, setParent1] = useState('');
   const [parent2, setParent2] = useState('');
   const [res, setRes] = useState([] as Pairing[]);
@@ -81,7 +68,7 @@ function App() {
 
   const setProbabilityFormat = (format: ProbabilityFormat): void => {
     _setProbabilityFormat(format);
-    localStorage.setItem('acnh_calc_prob_format', format); 
+    localStorage.setItem('acnh_calc_prob_format', format);
   }
 
   const setGenomeFormat = (format: GenomeFormat): void => {
@@ -103,44 +90,52 @@ function App() {
               aria-label="scrollable auto tabs example"
               centered
             >
-              <Tab label="Offspring" icon={<AccountTreeIcon/>} {...a11yProps(0)} />
-              <Tab label="Lookup" icon={<SearchIcon/>} {...a11yProps(1)} />
-              <Tab label="Settings" icon={<SettingsIcon/>} {...a11yProps(2)} />
+              <Tab icon={<AccountTreeIcon />} {...a11yProps(0)} />
+              <Tab icon={<SearchIcon />} {...a11yProps(1)} />
+              <Tab icon={<SettingsIcon />} {...a11yProps(2)} />
             </Tabs>
           </AppBar>
-          <TabPanel value={value} index={0}>
-            <Calculator 
-              genomeFormat={genomeFormat} 
-              probabilityFormat={probabilityFormat}
-              parent1={parent1}
-              parent2={parent2}
-              setParent1={setParent1}
-              setParent2={setParent2}
-              res={res}
-              setRes={setRes}
-              species={species}
-              setSpecies={setSpecies}
-            />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <Lookup 
-              genomeFormat={genomeFormat} 
-              species={species} 
-              setSpecies={setSpecies}
-              color={color}
-              setColor={setColor}
-            />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-              <GenomeFormatSelector 
+
+          <SwipeableViews
+            axis='x' 
+            index={value}
+            onChangeIndex={handleChangeIndex}
+          >
+            <div className="swipeable">
+              <Calculator
+                genomeFormat={genomeFormat}
+                probabilityFormat={probabilityFormat}
+                parent1={parent1}
+                parent2={parent2}
+                setParent1={setParent1}
+                setParent2={setParent2}
+                res={res}
+                setRes={setRes}
+                species={species}
+                setSpecies={setSpecies}
+              />
+            </div>
+            <div className="swipeable">
+              <Lookup
+                genomeFormat={genomeFormat}
+                species={species}
+                setSpecies={setSpecies}
+                color={color}
+                setColor={setColor}
+              />
+            </div>
+            <div className="swipeable">
+              <GenomeFormatSelector
                 genomeFormat={genomeFormat}
                 setGenomeFormat={setGenomeFormat}
               />
               <ProbabilityFormatSelector
                 probabilityFormat={probabilityFormat}
                 setProbabilityFormat={setProbabilityFormat}
-                />
-          </TabPanel>
+              />
+            </div>
+          </SwipeableViews>
+
         </div>
       </ThemeProvider>
 

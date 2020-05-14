@@ -30,7 +30,7 @@ export const ProbabilityFormatSelector = ({probabilityFormat, setProbabilityForm
     <>
       <FormControl className={classes.formControl}>
         <InputLabel shrink id="format-select-label">
-          Display Format
+          Probability Display
         </InputLabel>
         <Select
           labelId="species-select-label"
@@ -40,7 +40,7 @@ export const ProbabilityFormatSelector = ({probabilityFormat, setProbabilityForm
           displayEmpty
           className={classes.selectEmpty}
         >
-          {['decimal', 'fraction'].map(format => <MenuItem key={format} value={format}>{format}</MenuItem>)
+          {['percentage', 'fraction'].map(format => <MenuItem key={format} value={format}>{format}</MenuItem>)
 
           }
           

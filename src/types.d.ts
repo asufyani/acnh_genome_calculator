@@ -30,7 +30,7 @@ export type GenomeData = {
 }
 
 export type GenomeFormat = 'binary' | 'condensed' | 'alpha';
-export type ProbabilityFormat = 'decimal' | 'fraction';
+export type ProbabilityFormat = 'percentage' | 'fraction';
 
 export type Color = 
   "black" 
