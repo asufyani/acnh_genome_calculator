@@ -3,10 +3,21 @@ import { getOffspringData, pickGenomeString } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
 import { Pairing } from './types';
 import { Bubble } from './Bubble';
+import { ColorChartIcon } from './ColorChartIcon';
 
-export const Scenario = ({ parents, offspring, species, genomeFormat, probabilityFormat }: Pairing) => {
+interface ScenarioProps {
+  pairing: Pairing;
+  showChart: (pairing: Pairing) =>void;
+}
+
+
+export const Scenario = ({ pairing, showChart }: ScenarioProps) => {
+  const{ parents, offspring, species, genomeFormat, probabilityFormat } = pairing;
   const parent1Data = getOffspringData(species, parents[0]);
   const parent2Data = getOffspringData(species, parents[1]);
+  const handleIconClick = () => {
+    showChart(pairing);
+  }
   const headers=[parent1Data,parent2Data].map((parent) => {
     return {
       text: pickGenomeString(parent, genomeFormat),
@@ -17,6 +28,7 @@ export const Scenario = ({ parents, offspring, species, genomeFormat, probabilit
   return (
     <Bubble
       headers={headers}
+      chartIcon={ <ColorChartIcon showChart={handleIconClick}/> }
       resultsTable={<OffspringTable offspring={offspring} genomeFormat={genomeFormat} probabilityFormat={probabilityFormat} />}
     />
   )

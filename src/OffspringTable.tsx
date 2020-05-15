@@ -50,16 +50,17 @@ interface EnhancedTableProps {
   order: Order;
   orderBy: string;
   showProbability?: boolean;
+  showGenome?: boolean;
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { classes, order, orderBy, onRequestSort, showProbability = true } = props;
+  const { classes, order, orderBy, onRequestSort, showProbability = true, showGenome = true } = props;
   const createSortHandler = (property: SortableKey) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
 
   const headCells: HeadCell[] = [
-    { sortKey: 'genome', numeric: false, disablePadding: true, label: 'Genome' },
+    ...(showGenome ? [{ sortKey: 'genome' as SortableKey, numeric: false, disablePadding: true, label: 'Genome' }]:[]),
     { sortKey: 'colorDisplayString', numeric: false, disablePadding: false, label: 'Color' },
     ...(showProbability ? [{ sortKey: 'probability' as SortableKey, numeric: true, disablePadding: false, label: 'Probability' }] : []),
   ];
@@ -98,10 +99,11 @@ export interface OffspringTableProps {
   offspring: Offspring[],
   genomeFormat: GenomeFormat,
   showProbability?: boolean,
+  showGenome?: boolean,
   probabilityFormat?: ProbabilityFormat,
 }
 
-export const OffspringTable = ({ offspring, genomeFormat, showProbability = true, probabilityFormat='percentage' }: OffspringTableProps) => {
+export const OffspringTable = ({ offspring, genomeFormat, showProbability = true, showGenome = true, probabilityFormat='percentage' }: OffspringTableProps) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');
@@ -118,12 +120,13 @@ export const OffspringTable = ({ offspring, genomeFormat, showProbability = true
         orderBy={orderBy}
         onRequestSort={handleRequestSort}
         showProbability={showProbability}
+        showGenome={showGenome}
       />
       <TableBody>
         {
           stableSort(offspring, getComparator(order, orderBy)).map((possibleOffspring: Offspring) => {
             return <TableRow key={possibleOffspring.genome}>
-              <TableCell align='center'>{pickGenomeString(possibleOffspring, genomeFormat)}</TableCell>
+              {showGenome && <TableCell align='center'>{pickGenomeString(possibleOffspring, genomeFormat)}</TableCell>}
               <TableCell align='center'>
                 <Chip style={{ backgroundColor: possibleOffspring.backgroundColor }} className={classes.offspringChip} label={<Typography variant='subtitle2'>{possibleOffspring.colorDisplayString}</Typography>} />
               </TableCell>

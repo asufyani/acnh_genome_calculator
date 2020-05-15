@@ -8,23 +8,29 @@ interface HeaderProps {
 interface ResultsBubbleProps {
   headers: HeaderProps[];
   resultsTable: React.ReactElement;
+  chartIcon?: React.ReactElement;
 }
-export const Bubble = ({ headers, resultsTable }: ResultsBubbleProps) => {
+export const Bubble = ({ headers, resultsTable, chartIcon }: ResultsBubbleProps) => {
 
   return (
     <>
       <div className="dialogue-character-wrap">
-        { headers.map(({backgroundColor, key, text}) => {
-            return (
-              <div className="dialogue-character" style={{ backgroundColor }} key={key}>
-                <slot name="character"><b>{text}</b></slot>
-              </div>
-            )
-          }) }
-      </div>
-      <div className="dialogue">
-        <div className="dialogue-text">{resultsTable}</div>
 
+        {headers.map(({ backgroundColor, key, text }) => {
+          return (
+            <div className="dialogue-character" style={{ backgroundColor }} key={key}>
+              <slot name="character"><b>{text}</b></slot>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="dialogue">
+        <div className="dialogue-text">
+          {chartIcon}
+          {resultsTable}
+
+        </div>
       </div>
     </>
   );

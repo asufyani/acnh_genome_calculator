@@ -65,7 +65,6 @@ function App() {
   const [color, setColor] = useState(data.default.flowers[species]['colors'][0] as Color);
 
 
-
   const setProbabilityFormat = (format: ProbabilityFormat): void => {
     _setProbabilityFormat(format);
     localStorage.setItem('acnh_calc_prob_format', format);
@@ -97,7 +96,7 @@ function App() {
           </AppBar>
 
           <SwipeableViews
-            axis='x' 
+            axis='x'
             index={value}
             onChangeIndex={handleChangeIndex}
           >
