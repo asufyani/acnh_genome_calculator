@@ -8,9 +8,9 @@ interface HeaderProps {
 interface ResultsBubbleProps {
   headers: HeaderProps[];
   resultsTable: React.ReactElement;
-  chartIcon?: React.ReactElement;
+  cornerIcon?: React.ReactElement;
 }
-export const Bubble = ({ headers, resultsTable, chartIcon }: ResultsBubbleProps) => {
+export const Bubble = ({ headers, resultsTable, cornerIcon }: ResultsBubbleProps) => {
 
   return (
     <>
@@ -27,7 +27,7 @@ export const Bubble = ({ headers, resultsTable, chartIcon }: ResultsBubbleProps)
 
       <div className="dialogue">
         <div className="dialogue-text">
-          {chartIcon}
+          {cornerIcon}
           {resultsTable}
 
         </div>

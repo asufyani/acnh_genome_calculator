@@ -125,7 +125,7 @@ export const Calculator = ({genomeFormat, probabilityFormat, parent1, parent2, s
             timeout: 500,
           }}
         >
-          <div><ColorBreakdown pairing={chartPairing} probabilityFormat={probabilityFormat}/></div>
+          <div><ColorBreakdown pairing={chartPairing} probabilityFormat={probabilityFormat} genomeFormat={genomeFormat} closeModal={handleClose}/></div>
       </Modal>
 
     </>

@@ -28,7 +28,7 @@ export const Scenario = ({ pairing, showChart }: ScenarioProps) => {
   return (
     <Bubble
       headers={headers}
-      chartIcon={ <ColorChartIcon showChart={handleIconClick}/> }
+      cornerIcon={ <ColorChartIcon showChart={handleIconClick}/> }
       resultsTable={<OffspringTable offspring={offspring} genomeFormat={genomeFormat} probabilityFormat={probabilityFormat} />}
     />
   )

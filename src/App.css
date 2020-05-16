@@ -6,6 +6,23 @@ body, html, #root {
   min-height: 100vh;
 }
 
+.breakdown-bubble-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.breakdown-bubble-container .dialogue {
+  width: 90%;
+}
+
+.pie-container {
+  height: 50vh;
+  width: 100%;
+}
+
+.breakdown-bubble-container .dialogue-character-wrap {
+  left:10%;
+}
 
 .MuiGrid-root.resultsContainer {
   padding: 25px 10px 10px;
