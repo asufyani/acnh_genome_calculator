@@ -6,7 +6,8 @@ import Lookup from './Lookup';
 import SwipeableViews from 'react-swipeable-views';
 import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
-import { GenomeFormat, ProbabilityFormat, Pairing, Species, Color } from './types';
+import { GenomeFormat, ProbabilityFormat, Pairing  } from './types';
+import { Color, Species } from './enums';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
 import { ProbabilityFormatSelector } from './ProbabilityFormatSelector';
 import AccountTreeIcon from '@material-ui/icons/AccountTreeRounded';
@@ -60,10 +61,14 @@ function App() {
   const [parent1, setParent1] = useState('');
   const [parent2, setParent2] = useState('');
   const [res, setRes] = useState([] as Pairing[]);
-  const speciesList = Object.keys(data.default.flowers).sort();
+  const speciesList = Object.keys(Species);
   const [species, setSpecies] = useState(speciesList[0] as Species);
   const [color, setColor] = useState(data.default.flowers[species]['colors'][0] as Color);
 
+  const updateSpecies = (species: Species) => {
+    setRes([] as Pairing[]);
+    setSpecies(species);
+  }
 
   const setProbabilityFormat = (format: ProbabilityFormat): void => {
     _setProbabilityFormat(format);
@@ -111,14 +116,14 @@ function App() {
                 res={res}
                 setRes={setRes}
                 species={species}
-                setSpecies={setSpecies}
+                setSpecies={updateSpecies}
               />
             </div>
             <div className="swipeable">
               <Lookup
                 genomeFormat={genomeFormat}
                 species={species}
-                setSpecies={setSpecies}
+                setSpecies={updateSpecies}
                 color={color}
                 setColor={setColor}
               />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
-import { Species } from './types';
-import * as data from './flowers';
+import { Species } from './enums';
 
 const useStyles = makeStyles((theme) => createStyles({
   formControl: {
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }));
 
-const speciesList = Object.keys(data.default.flowers);
+const speciesList = Object.keys(Species);
 
 interface SpeciesSelectProps {
   species: Species;

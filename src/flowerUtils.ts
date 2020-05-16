@@ -1,5 +1,6 @@
 import * as data from './flowers';
-import { Species, GenomeData, Offspring, Pairing, Color, VariantMap, PartialOffspring, GenomeFormat, ProbabilityFormat } from './types';
+import { GenomeData, Offspring, Pairing, VariantMap, PartialOffspring, GenomeFormat, ProbabilityFormat } from './types';
+import { Species, Color, bgColors } from './enums';
 const memoGeneCombos: { [key: string]: string[] } = {
   '0000': ['00'],
   '0001': ['00', '01'],
@@ -47,7 +48,7 @@ export function getColorData(species: Species, genome: string): PartialOffspring
   const colorData = {
     species,
     genome,
-    backgroundColor: bgColors[data.color],
+    backgroundColor: bgColors[data.color as Color],
     colorDisplayString: colorString,
     color: data.color,
   };
@@ -55,7 +56,7 @@ export function getColorData(species: Species, genome: string): PartialOffspring
 }
 
 export function getColorString({ color, seed, island }: { color: Color, seed?: number, island?: number }): string {
-  let colorString = color;
+  let colorString = color as string;
   if (island) {
     colorString += " (island)";
   }
@@ -89,16 +90,15 @@ export function getOffspringData(species: Species, genome: string): Offspring {
   } as Offspring;
 }
 
-export const bgColors: { [key in Color]: string } = {
-  "black": '#999',
-  "blue": '#36f',
-  "orange": '#f93',
-  "red": "#f33",
-  "yellow": "#ff3",
-  "purple": "#96f",
-  "green": "#9c0",
-  "pink": "#f9f",
-  "white": "#fff",
+export function getAllOffspringForColor(species: Species, color: Color) {
+  let possibleGenomes = [] as Offspring[];
+  const allGenomes = flowers[species]['genomes'] as GenomeData;
+  Object.keys(allGenomes).forEach(genome => {
+    if (allGenomes[genome].color === color) {
+      possibleGenomes.push(getOffspringData(species, genome))
+    }
+  });
+  return possibleGenomes;
 }
 
 
@@ -107,27 +107,46 @@ function parseGenomeSet(genomeSet: string, species: Species) {
   let splitGenes = [] as string[][];
   genomes.forEach(rawGenome => {
     const genome = rawGenome.trim();
-    const split_match = split_binary.exec(genome);
     let gene = [] as string[];
-    if (split_match && split_match[1]) {
-      gene = genome.split(split_match[1]);
-      splitGenes.push(gene);
+    let matched = 0;
+    if (genome in Color) {
+      matched = 1;
+      const possibleGenomes = getAllOffspringForColor(species, genome as Color);
+      possibleGenomes.forEach((offspring) => {
+        gene = offspring.genome.split('_');
+        splitGenes.push(gene);
+      })
     }
-    const condensed_match = condensed.exec(genome);
-    if (!split_match && condensed_match && condensed_match[0]) {
-      gene = genome.split('').map((numeral: string): string => numeral_map[parseInt(numeral, 3)])
-      splitGenes.push(gene);
+    if (!matched) {
+      const split_match = split_binary.exec(genome);
+      if (split_match && split_match[1]) {
+        matched = 1;
+        gene = genome.split(split_match[1]);
+        splitGenes.push(gene);
+      }
     }
-    const word_match = words.exec(genome);
-    if (word_match) {
-      const parts = genome.toLowerCase().split(' ');
-      const variant = parts[0];
-      const color = parts[1];
-      const variantData: VariantMap = flowers[species][variant as 'seed' | 'island'];
-      const variant_genome = variantData[color];
-      gene = variant_genome.split('_')
-      splitGenes.push(gene);
+
+    if (!matched) {
+      const condensed_match = condensed.exec(genome);
+      if (condensed_match && condensed_match[0]) {
+        matched = 1;
+        gene = genome.split('').map((numeral: string): string => numeral_map[parseInt(numeral, 3)])
+        splitGenes.push(gene);
+      }
     }
+    if (!matched) {
+      const word_match = words.exec(genome);
+      if (word_match) {
+        const parts = genome.toLowerCase().split(' ');
+        const variant = parts[0];
+        const color = parts[1];
+        const variantData: VariantMap = flowers[species][variant as 'seed' | 'island'];
+        const variant_genome = variantData[color];
+        gene = variant_genome.split('_')
+        splitGenes.push(gene);
+      }
+    }
+
     if (!checkGene(gene, species)) {
       throw new Error(`Could not parse parent ${rawGenome} for species ${species}`);
     }
@@ -153,6 +172,8 @@ export function pickGenomeString(offspring: PartialOffspring, format: GenomeForm
   }
 }
 
+
+
 export function possibleGenomes(parent1: string, parent2: string, species: Species): { res: Pairing[], error?: Error } {
   // if (parent1 === '') {
   //   return parent2;
@@ -170,11 +191,16 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
     let childGenomesPerParents: { [key: string]: string[] } = {};
     splitGenes1.forEach(genome1 => {
       splitGenes2.forEach(genome2 => {
-        let allelesForEachGene = [];
-        for (let i = 0; i < genome1.length; i++) {
+        if (childGenomesPerParents[genome1.join('_') + ',' + genome2.join('_')]
+        || childGenomesPerParents[genome2.join('_') + ',' + genome1.join('_')]) {
+          return;
+        }
+        let allelesForEachGene = [] as string[][];
+        genome1.forEach((_item, i) => {
           const geneCombo = genome1[i] + genome2[i];
           allelesForEachGene.push(memoGeneCombos[geneCombo]);
-        }
+        })
+
         let possibleChildGenomes = createPossibleGenomeList(allelesForEachGene);
         childGenomesPerParents[genome1.join('_') + ',' + genome2.join('_')] = possibleChildGenomes;
       })
@@ -232,18 +258,19 @@ export function getCondensedGenome(genome: string): string {
   return genome.split('_').map(allele => { return allele.split('').reduce((a: string, b: string) => { return (parseInt(a, 2) + parseInt(b, 2)).toString() }) }).join('');
 }
 
-export function createPossibleGenomeList(possibilities: string[][]): string[] {
+ function createPossibleGenomeList(possibilities: string[][]): string[] {
   if (possibilities.length === 1) {
     return possibilities[0]
   }
   const heads = possibilities.shift();
   const genomeTails = createPossibleGenomeList(possibilities);
-  let combinedGenes = [];
-  for (let i = 0; i < heads!.length; i++) {
-    for (let j = 0; j < genomeTails.length; j++) {
-      combinedGenes.push(heads![i] + '_' + genomeTails[j]);
-    }
-  }
+  let combinedGenes = [] as string[];
+  heads?.forEach(head=> {
+    genomeTails.forEach(tail => {
+      combinedGenes.push(head+'_'+tail);
+    })
+  })
+  
   return combinedGenes;
 }
 

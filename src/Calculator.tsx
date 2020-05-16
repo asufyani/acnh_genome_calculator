@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import { Grid, TextField, Button, makeStyles, createStyles, Typography, Modal, Backdrop } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
 import { Scenario } from './Scenario';
-import { Pairing, Species, GenomeFormat, ProbabilityFormat } from './types';
+import { Pairing, GenomeFormat, ProbabilityFormat } from './types';
+import { Species} from './enums';
 import { SpeciesSelect } from './SpeciesSelect';
 import { ColorBreakdown } from './ColorBreakdown';
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
-import { Species, GenomeData, Offspring, GenomeFormat, Color } from './types';
+import { GenomeFormat } from './types';
+import { bgColors, Species, Color } from './enums'
 import * as data from './flowers';
-import { getOffspringData, bgColors } from './flowerUtils';
+import {  getAllOffspringForColor } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
 import { SpeciesSelect } from './SpeciesSelect';
 import Bubble from './Bubble';
@@ -34,13 +35,7 @@ interface LookupProps {
 export const Lookup = ({genomeFormat, species, setSpecies, color, setColor}: LookupProps) => {
   const classes = useStyles();
 
-  let possibleGenomes = [] as Offspring[];
-  const allGenomes = flowerData[species]['genomes'] as GenomeData;
-  Object.keys(allGenomes).forEach(genome => {
-    if (allGenomes[genome].color === color) {
-      possibleGenomes.push(getOffspringData(species, genome))
-    }
-  });
+  const possibleGenomes = getAllOffspringForColor(species, color);
 
   return (
     <>

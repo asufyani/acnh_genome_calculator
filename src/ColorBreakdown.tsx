@@ -1,7 +1,8 @@
 import React from 'react';
-import { Pairing, Color, Offspring, ProbabilityFormat, GenomeFormat } from './types';
+import { Pairing, Offspring, ProbabilityFormat, GenomeFormat } from './types';
+import { bgColors, Color } from './enums';
 import { OffspringTable } from './OffspringTable';
-import { bgColors, getOffspringData, pickGenomeString } from './flowerUtils';
+import { getOffspringData, pickGenomeString } from './flowerUtils';
 import Bubble from './Bubble';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import CloseIcon from '@material-ui/icons/CloseRounded';
@@ -10,7 +11,8 @@ import { Grid } from '@material-ui/core';
 export const ColorBreakdown = ({ pairing, probabilityFormat, closeModal, genomeFormat }: { pairing: Pairing, probabilityFormat: ProbabilityFormat, genomeFormat: GenomeFormat, closeModal: () => void }) => {
   let colors = {} as { [key in Color]: number };
   pairing.offspring.forEach((offspring) => {
-    colors[offspring.color] = colors[offspring.color] ? colors[offspring.color] + offspring.probability : offspring.probability;
+    const color = offspring.color as Color;
+    colors[color] = colors[color] ? colors[color] + offspring.probability : offspring.probability;
   });
   const { parents, species } = pairing;
   const parent1Data = getOffspringData(species, parents[0]);
@@ -51,7 +53,7 @@ export const ColorBreakdown = ({ pairing, probabilityFormat, closeModal, genomeF
 
     return (
       <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize='12px'>
-        {`${(percent * 100).toFixed(0)}%`}
+        {`${(percent * 100)}%`}
       </text>
     );
   };

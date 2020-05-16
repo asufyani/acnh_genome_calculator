@@ -19,8 +19,6 @@ export type Pairing = {
 
 export type Order = 'asc' | 'desc';
 
-export type Species = 'hyacinth' | 'windflower' | 'mum' | 'lily' | 'pansy' | 'rose' | 'tulip' | 'cosmos';
-
 export type GenomeData = {
   [key: string]: {
     color: Color,
@@ -31,17 +29,6 @@ export type GenomeData = {
 
 export type GenomeFormat = 'binary' | 'condensed' | 'alpha';
 export type ProbabilityFormat = 'percentage' | 'fraction';
-
-export type Color = 
-  "black" 
-  | "blue"
-  | "orange"
-  | "red"
-  | "yellow"
-  | "purple"
-  | "green"
-  | "pink"
-  | "white";
 
 export type VariantMap = {
   [key: string]: string;
