@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/acnh_genome_calculator/static/css/main.efd00d2d.chunk.css",
-    "main.js": "/acnh_genome_calculator/static/js/main.8820e458.chunk.js",
-    "main.js.map": "/acnh_genome_calculator/static/js/main.8820e458.chunk.js.map",
+    "main.js": "/acnh_genome_calculator/static/js/main.035feba9.chunk.js",
+    "main.js.map": "/acnh_genome_calculator/static/js/main.035feba9.chunk.js.map",
     "runtime-main.js": "/acnh_genome_calculator/static/js/runtime-main.b9f1097c.js",
     "runtime-main.js.map": "/acnh_genome_calculator/static/js/runtime-main.b9f1097c.js.map",
     "static/js/2.e01fb06a.chunk.js": "/acnh_genome_calculator/static/js/2.e01fb06a.chunk.js",
     "static/js/2.e01fb06a.chunk.js.map": "/acnh_genome_calculator/static/js/2.e01fb06a.chunk.js.map",
     "index.html": "/acnh_genome_calculator/index.html",
-    "precache-manifest.4c8bec1a48a1b48fc8e1cd4b7106b65d.js": "/acnh_genome_calculator/precache-manifest.4c8bec1a48a1b48fc8e1cd4b7106b65d.js",
+    "precache-manifest.bd2a3ebd622113372ae5a0b58f2c70c8.js": "/acnh_genome_calculator/precache-manifest.bd2a3ebd622113372ae5a0b58f2c70c8.js",
     "service-worker.js": "/acnh_genome_calculator/service-worker.js",
     "static/css/main.efd00d2d.chunk.css.map": "/acnh_genome_calculator/static/css/main.efd00d2d.chunk.css.map",
     "static/js/2.e01fb06a.chunk.js.LICENSE.txt": "/acnh_genome_calculator/static/js/2.e01fb06a.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b9f1097c.js",
     "static/js/2.e01fb06a.chunk.js",
     "static/css/main.efd00d2d.chunk.css",
-    "static/js/main.8820e458.chunk.js"
+    "static/js/main.035feba9.chunk.js"
   ]
 }
