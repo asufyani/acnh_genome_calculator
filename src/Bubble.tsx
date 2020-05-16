@@ -29,7 +29,6 @@ export const Bubble = ({ headers, resultsTable, cornerIcon }: ResultsBubbleProps
         <div className="dialogue-text">
           {cornerIcon}
           {resultsTable}
-
         </div>
       </div>
     </>

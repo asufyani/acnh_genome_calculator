@@ -7,6 +7,7 @@ import Bubble from './Bubble';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import CloseIcon from '@material-ui/icons/CloseRounded';
 import { Grid } from '@material-ui/core';
+import { CornerIcon } from './CornerIcon';
 
 export const ColorBreakdown = ({ pairing, probabilityFormat, closeModal, genomeFormat }: { pairing: Pairing, probabilityFormat: ProbabilityFormat, genomeFormat: GenomeFormat, closeModal: () => void }) => {
   let colors = {} as { [key in Color]: number };
@@ -64,8 +65,7 @@ export const ColorBreakdown = ({ pairing, probabilityFormat, closeModal, genomeF
 
       <Bubble
         headers={headers}
-        cornerIcon={<span onClick={closeModal} style={{ position: 'absolute', top: '-10px', right: '27px', zIndex: 3 }}>
-          <CloseIcon /></span>}
+        cornerIcon={<CornerIcon icon={<CloseIcon />} handler={closeModal} />}
         resultsTable={
           <>
             <Grid container>

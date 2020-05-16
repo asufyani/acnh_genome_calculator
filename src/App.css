@@ -48,3 +48,10 @@ body, html, #root {
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.corner-icon {
+  position: absolute;
+  top: -25px;
+  right: 10px;
+  z-index:3;
+}

@@ -3,22 +3,24 @@ import { getOffspringData, pickGenomeString } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';
 import { Pairing } from './types';
 import { Bubble } from './Bubble';
-import { ColorChartIcon } from './ColorChartIcon';
+import { CornerIcon } from './CornerIcon';
+import PieChartIcon from '@material-ui/icons/PieChartRounded';
+
 
 interface ScenarioProps {
   pairing: Pairing;
-  showChart: (pairing: Pairing) =>void;
+  showChart: (pairing: Pairing) => void;
 }
 
 
 export const Scenario = ({ pairing, showChart }: ScenarioProps) => {
-  const{ parents, offspring, species, genomeFormat, probabilityFormat } = pairing;
+  const { parents, offspring, species, genomeFormat, probabilityFormat } = pairing;
   const parent1Data = getOffspringData(species, parents[0]);
   const parent2Data = getOffspringData(species, parents[1]);
   const handleIconClick = () => {
     showChart(pairing);
   }
-  const headers=[parent1Data,parent2Data].map((parent) => {
+  const headers = [parent1Data, parent2Data].map((parent) => {
     return {
       text: pickGenomeString(parent, genomeFormat),
       key: parent.genome,
@@ -28,7 +30,7 @@ export const Scenario = ({ pairing, showChart }: ScenarioProps) => {
   return (
     <Bubble
       headers={headers}
-      cornerIcon={ <ColorChartIcon showChart={handleIconClick}/> }
+      cornerIcon={<CornerIcon handler={handleIconClick} icon={<PieChartIcon />} />}
       resultsTable={<OffspringTable offspring={offspring} genomeFormat={genomeFormat} probabilityFormat={probabilityFormat} />}
     />
   )

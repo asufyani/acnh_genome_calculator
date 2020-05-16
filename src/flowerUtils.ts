@@ -109,9 +109,9 @@ function parseGenomeSet(genomeSet: string, species: Species) {
     const genome = rawGenome.trim();
     let gene = [] as string[];
     let matched = 0;
-    if (genome in Color) {
+    if (genome.toLowerCase() in Color) {
       matched = 1;
-      const possibleGenomes = getAllOffspringForColor(species, genome as Color);
+      const possibleGenomes = getAllOffspringForColor(species, genome.toLowerCase() as Color);
       possibleGenomes.forEach((offspring) => {
         gene = offspring.genome.split('_');
         splitGenes.push(gene);
@@ -192,7 +192,7 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
     splitGenes1.forEach(genome1 => {
       splitGenes2.forEach(genome2 => {
         if (childGenomesPerParents[genome1.join('_') + ',' + genome2.join('_')]
-        || childGenomesPerParents[genome2.join('_') + ',' + genome1.join('_')]) {
+          || childGenomesPerParents[genome2.join('_') + ',' + genome1.join('_')]) {
           return;
         }
         let allelesForEachGene = [] as string[][];
@@ -258,19 +258,19 @@ export function getCondensedGenome(genome: string): string {
   return genome.split('_').map(allele => { return allele.split('').reduce((a: string, b: string) => { return (parseInt(a, 2) + parseInt(b, 2)).toString() }) }).join('');
 }
 
- function createPossibleGenomeList(possibilities: string[][]): string[] {
+function createPossibleGenomeList(possibilities: string[][]): string[] {
   if (possibilities.length === 1) {
     return possibilities[0]
   }
   const heads = possibilities.shift();
   const genomeTails = createPossibleGenomeList(possibilities);
   let combinedGenes = [] as string[];
-  heads?.forEach(head=> {
+  heads?.forEach(head => {
     genomeTails.forEach(tail => {
-      combinedGenes.push(head+'_'+tail);
+      combinedGenes.push(head + '_' + tail);
     })
   })
-  
+
   return combinedGenes;
 }
 
