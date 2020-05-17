@@ -1,6 +1,7 @@
 import React from 'react';
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles, createStyles, Theme, Table, TableBody, Chip, Typography } from '@material-ui/core';
-import { Offspring, Order, GenomeFormat, ProbabilityFormat } from './types';
+import { Offspring, Order  } from './types';
+import { GenomeFormat, ProbabilityFormat } from './enums';
 import { stableSort, getComparator } from './tableUtils';
 import { pickGenomeString, getProbability } from './flowerUtils';
 type SortableKey = "genome" | "probability" | "colorDisplayString";
@@ -103,7 +104,7 @@ export interface OffspringTableProps {
   probabilityFormat?: ProbabilityFormat,
 }
 
-export const OffspringTable = React.memo(({ offspring, genomeFormat, showProbability = true, showGenome = true, probabilityFormat='percentage' }: OffspringTableProps) => {
+export const OffspringTable = React.memo(({ offspring, genomeFormat, showProbability = true, showGenome = true, probabilityFormat=ProbabilityFormat.percentage }: OffspringTableProps) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<SortableKey>('genome');

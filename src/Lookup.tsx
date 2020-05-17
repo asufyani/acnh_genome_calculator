@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, FormControl, InputLabel, Select, MenuItem, makeStyles, createStyles } from '@material-ui/core';
-import { GenomeFormat } from './types';
-import { bgColors, Species, Color } from './enums'
+import { bgColors, Species, Color, GenomeFormat } from './enums'
 import * as data from './flowers';
 import {  getAllOffspringForColor } from './flowerUtils';
 import { OffspringTable } from './OffspringTable';

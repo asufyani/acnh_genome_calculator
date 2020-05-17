@@ -1,6 +1,6 @@
 import * as data from './flowers';
-import { GenomeData, Offspring, Pairing, VariantMap, PartialOffspring, GenomeFormat, ProbabilityFormat } from './types';
-import { Species, Color, bgColors } from './enums';
+import { GenomeData, Offspring, Pairing, VariantMap, PartialOffspring } from './types';
+import { Species, Color, bgColors, GenomeFormat, ProbabilityFormat } from './enums';
 import _ from 'lodash';
 const memoGeneCombos: { [key: string]: string[] } = {
   '0000': ['00'],
@@ -161,11 +161,11 @@ function checkGene(gene: string[], species: Species) {
 
 export function pickGenomeString(offspring: PartialOffspring, format: GenomeFormat): string {
   switch (format) {
-    case 'binary':
+    case GenomeFormat.binary:
       return offspring.genome!;
-    case 'condensed':
+    case GenomeFormat.condensed:
       return offspring.condensedGenome!;
-    case 'alpha':
+    case GenomeFormat.alpha:
       return offspring.alphaGenome!;
     default:
       return '';
@@ -188,7 +188,7 @@ export function possibleGenomes(parent1: string, parent2: string, offspringFilte
     const splitGenes2 = parseGenomeSet(parent2, species);
     let filterGenomes: string[] = [];
     if (offspringFilter) {
-      filterGenomes = parseGenomeSet(offspringFilter, species).map((gene) => {return gene.join('_')});
+      filterGenomes = parseGenomeSet(offspringFilter, species).map((gene) => { return gene.join('_') });
     }
 
 
@@ -231,9 +231,9 @@ export function possibleGenomes(parent1: string, parent2: string, offspringFilte
         });
       });
 
-      if(!filterGenomes.length  || _.some(result.offspring, (offspring) => { return _.some(filterGenomes, (filterGenome) => {return filterGenome === offspring.genome})})) {
+      if (!filterGenomes.length || _.some(result.offspring, (offspring) => { return _.some(filterGenomes, (filterGenome) => { return filterGenome === offspring.genome }) })) {
         res.push(result);
-      }  
+      }
     });
 
     return { res };
@@ -254,7 +254,7 @@ function gcd(a: number, b: number): number {
 };
 
 export function getProbability({ probability }: Offspring, format: ProbabilityFormat) {
-  if (format === 'percentage') {
+  if (format === ProbabilityFormat.percentage) {
     return (probability * 100) + '%';
   }
   else {

@@ -6,10 +6,8 @@ import Lookup from './Lookup';
 import SwipeableViews from 'react-swipeable-views';
 import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider, Modal, Backdrop } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
-import { GenomeFormat, ProbabilityFormat, Pairing } from './types';
-import { Color, Species } from './enums';
-import { GenomeFormatSelector } from './GenomeFormatSelector';
-import { ProbabilityFormatSelector } from './ProbabilityFormatSelector';
+import { Pairing } from './types';
+import {  GenomeFormat, ProbabilityFormat, Color, Species } from './enums';
 import AccountTreeIcon from '@material-ui/icons/AccountTreeRounded';
 import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -17,6 +15,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import * as data from './flowers';
 import { ResultsGrid } from './ResultGrid';
 import { ColorBreakdown } from './ColorBreakdown';
+import { FormatSelector } from './FormatSelector';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -86,13 +85,13 @@ function App() {
   }, [setChartPairing, setShowModal]);
 
 
-  const setProbabilityFormat = React.useCallback((format: ProbabilityFormat): void => {
-    _setProbabilityFormat(format);
+  const setProbabilityFormat = React.useCallback((format: string): void => {
+    _setProbabilityFormat(format as ProbabilityFormat);
     localStorage.setItem('acnh_calc_prob_format', format);
   }, [_setProbabilityFormat]);
 
-  const setGenomeFormat = React.useCallback((format: GenomeFormat): void => {
-    _setGenomeFormat(format);
+  const setGenomeFormat = React.useCallback((format: string): void => {
+    _setGenomeFormat(format as GenomeFormat);
     localStorage.setItem('acnh_calc_genome_format', format);
   }, [_setGenomeFormat]);
 
@@ -161,13 +160,17 @@ function App() {
               />
             </div>
             <div className="swipeable">
-              <GenomeFormatSelector
-                genomeFormat={genomeFormat}
-                setGenomeFormat={setGenomeFormat}
+              <FormatSelector
+                format={genomeFormat}
+                label='Genome Display'
+                formatOptions={GenomeFormat}
+                setFormat={setGenomeFormat}
               />
-              <ProbabilityFormatSelector
-                probabilityFormat={probabilityFormat}
-                setProbabilityFormat={setProbabilityFormat}
+              <FormatSelector
+                format={probabilityFormat}
+                label="Probability Display"
+                formatOptions={ProbabilityFormat}
+                setFormat={setProbabilityFormat}
               />
             </div>
           </SwipeableViews>

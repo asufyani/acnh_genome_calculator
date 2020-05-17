@@ -1,7 +1,5 @@
 import React from 'react';
 import { FormControl, makeStyles, createStyles, InputLabel, Select, MenuItem } from '@material-ui/core';
-import { GenomeFormat } from './types';
-
 
 const useStyles = makeStyles((theme) => createStyles({
   formControl: {
@@ -18,29 +16,30 @@ const useStyles = makeStyles((theme) => createStyles({
     },
   },
 }));
-interface GenomeFormatSelectorProps {
-  genomeFormat: GenomeFormat;
-  setGenomeFormat: (arg0: GenomeFormat) => void;
+interface FormatSelectorProps {
+  format: string;
+  formatOptions: {[key: string]: string};
+  label: string;
+  setFormat: (arg0: string) => void;
 }
 
-export const GenomeFormatSelector = ({genomeFormat, setGenomeFormat} : GenomeFormatSelectorProps ) => {
+export const FormatSelector = ({format, formatOptions, label, setFormat} : FormatSelectorProps ) => {
   const classes = useStyles();
 ;
   return (
     <>
       <FormControl className={classes.formControl}>
         <InputLabel shrink id="format-select-label">
-          Genome Display
+          {label}
         </InputLabel>
         <Select
-          labelId="species-select-label"
-          id="species-select"
-          value={genomeFormat}
-          onChange={(e: React.ChangeEvent<{ value: unknown }>) => setGenomeFormat(e.target.value as GenomeFormat)}
+          labelId="format-select-label"
+          value={format}
+          onChange={(e: React.ChangeEvent<{ value: unknown }>) => setFormat(e.target.value as string)}
           displayEmpty
           className={classes.selectEmpty}
         >
-          {['binary', 'condensed', 'alpha'].map(format => <MenuItem key={format} value={format}>{format}</MenuItem>)
+          {Object.keys(formatOptions).map(format => <MenuItem key={format} value={format}>{format}</MenuItem>)
 
           }
           

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { Scenario } from './Scenario';
-import { Species } from './enums';
-import { GenomeFormat, ProbabilityFormat, Pairing } from './types';
+import { GenomeFormat, ProbabilityFormat, Species } from './enums';
+import {  Pairing } from './types';
 
 interface ResultsGridProps {
   res: Pairing[];

@@ -32,3 +32,14 @@ export enum bgColors {
   pink= "#f9f",
   white= "#fff",
 }
+
+export enum GenomeFormat {
+  binary = 'binary',
+  condensed = 'condensed',
+  alpha = 'alpha',
+}
+
+export enum ProbabilityFormat {
+  percentage = 'percentage',
+  fraction= 'fraction'
+}

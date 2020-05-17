@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, TextField, Button, makeStyles, createStyles } from '@material-ui/core';
 import { possibleGenomes } from './flowerUtils';
-import { Pairing, GenomeFormat, ProbabilityFormat } from './types';
-import { Species } from './enums';
+import { Pairing } from './types';
+import { Species, GenomeFormat, ProbabilityFormat } from './enums';
 import { SpeciesSelect } from './SpeciesSelect';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Pairing, Offspring, ProbabilityFormat, GenomeFormat } from './types';
-import { bgColors, Color } from './enums';
+import { Pairing, Offspring } from './types';
+import { bgColors, Color, ProbabilityFormat, GenomeFormat } from './enums';
 import { OffspringTable } from './OffspringTable';
 import { getOffspringData, pickGenomeString } from './flowerUtils';
 import Bubble from './Bubble';
@@ -86,7 +86,7 @@ export const ColorBreakdown = ({ pairing, probabilityFormat, closeModal, genomeF
                 <OffspringTable
                   offspring={colorOffspring}
                   showGenome={false}
-                  genomeFormat={"binary"}
+                  genomeFormat={GenomeFormat.binary}
                   probabilityFormat={probabilityFormat}
                 />
               </Grid>
