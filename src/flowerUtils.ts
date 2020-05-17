@@ -1,6 +1,7 @@
 import * as data from './flowers';
 import { GenomeData, Offspring, Pairing, VariantMap, PartialOffspring, GenomeFormat, ProbabilityFormat } from './types';
 import { Species, Color, bgColors } from './enums';
+import _ from 'lodash';
 const memoGeneCombos: { [key: string]: string[] } = {
   '0000': ['00'],
   '0001': ['00', '01'],
@@ -102,7 +103,7 @@ export function getAllOffspringForColor(species: Species, color: Color) {
 }
 
 
-function parseGenomeSet(genomeSet: string, species: Species) {
+function parseGenomeSet(genomeSet: string, species: Species): string[][] {
   const genomes = genomeSet.split(',');
   let splitGenes = [] as string[][];
   genomes.forEach(rawGenome => {
@@ -148,7 +149,7 @@ function parseGenomeSet(genomeSet: string, species: Species) {
     }
 
     if (!checkGene(gene, species)) {
-      throw new Error(`Could not parse parent ${rawGenome} for species ${species}`);
+      throw new Error(`Could not parse ${rawGenome} for species ${species}`);
     }
   });
   return splitGenes;
@@ -174,7 +175,7 @@ export function pickGenomeString(offspring: PartialOffspring, format: GenomeForm
 
 
 
-export function possibleGenomes(parent1: string, parent2: string, species: Species): { res: Pairing[], error?: Error } {
+export function possibleGenomes(parent1: string, parent2: string, offspringFilter: string, species: Species): { res: Pairing[], error?: Error } {
   // if (parent1 === '') {
   //   return parent2;
   // }
@@ -185,6 +186,10 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
   try {
     const splitGenes1 = parseGenomeSet(parent1, species);
     const splitGenes2 = parseGenomeSet(parent2, species);
+    let filterGenomes: string[] = [];
+    if (offspringFilter) {
+      filterGenomes = parseGenomeSet(offspringFilter, species).map((gene) => {return gene.join('_')});
+    }
 
 
     // Combine the possible genes of the parents
@@ -225,9 +230,14 @@ export function possibleGenomes(parent1: string, parent2: string, species: Speci
           ...offspringData
         });
       });
-      res.push(result);
+
+      if(!filterGenomes.length  || _.some(result.offspring, (offspring) => { return _.some(filterGenomes, (filterGenome) => {return filterGenome === offspring.genome})})) {
+        res.push(result);
+      }  
     });
+
     return { res };
+
   } catch (e) {
     return {
       res: [],

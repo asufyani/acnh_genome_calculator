@@ -4,9 +4,9 @@ import './bubble.scss';
 import Calculator from './Calculator';
 import Lookup from './Lookup';
 import SwipeableViews from 'react-swipeable-views';
-import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { AppBar, Tabs, Tab, createMuiTheme, ThemeProvider, Modal, Backdrop } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
-import { GenomeFormat, ProbabilityFormat, Pairing  } from './types';
+import { GenomeFormat, ProbabilityFormat, Pairing } from './types';
 import { Color, Species } from './enums';
 import { GenomeFormatSelector } from './GenomeFormatSelector';
 import { ProbabilityFormatSelector } from './ProbabilityFormatSelector';
@@ -15,6 +15,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 import * as data from './flowers';
+import { ResultsGrid } from './ResultGrid';
+import { ColorBreakdown } from './ColorBreakdown';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -60,25 +62,39 @@ function App() {
   const [probabilityFormat, _setProbabilityFormat] = useState((localStorage.getItem('acnh_calc_prob_format') || 'percentage') as ProbabilityFormat);
   const [parent1, setParent1] = useState('');
   const [parent2, setParent2] = useState('');
+  const [err, setErr] = useState('');
+  const [offspringFilter, setOffspringFilter] = useState('');
   const [res, setRes] = useState([] as Pairing[]);
   const speciesList = Object.keys(Species);
   const [species, setSpecies] = useState(speciesList[0] as Species);
   const [color, setColor] = useState(data.default.flowers[species]['colors'][0] as Color);
+  const [showModal, setShowModal] = useState(false);
+  const [chartPairing, setChartPairing] = useState({} as Pairing);
 
-  const updateSpecies = (species: Species) => {
+  const updateSpecies = React.useCallback((species: Species) => {
     setRes([] as Pairing[]);
     setSpecies(species);
+  }, [setRes, setSpecies]);
+
+  const handleClose = () => {
+    setShowModal(false);
   }
 
-  const setProbabilityFormat = (format: ProbabilityFormat): void => {
+  const showChart = React.useCallback((pairing: Pairing) => {
+    setChartPairing(pairing);
+    setShowModal(true);
+  }, [setChartPairing, setShowModal]);
+
+
+  const setProbabilityFormat = React.useCallback((format: ProbabilityFormat): void => {
     _setProbabilityFormat(format);
     localStorage.setItem('acnh_calc_prob_format', format);
-  }
+  }, [_setProbabilityFormat]);
 
-  const setGenomeFormat = (format: GenomeFormat): void => {
+  const setGenomeFormat = React.useCallback((format: GenomeFormat): void => {
     _setGenomeFormat(format);
     localStorage.setItem('acnh_calc_genome_format', format);
-  }
+  }, [_setGenomeFormat]);
 
   return (
     <>
@@ -113,11 +129,27 @@ function App() {
                 parent2={parent2}
                 setParent1={setParent1}
                 setParent2={setParent2}
-                res={res}
+                offspringFilter={offspringFilter}
+                setOffspringFilter={setOffspringFilter}
+                setErr={setErr}
                 setRes={setRes}
                 species={species}
                 setSpecies={updateSpecies}
               />
+              <ResultsGrid res={res} err={err} species={species} genomeFormat={genomeFormat} probabilityFormat={probabilityFormat} showChart={showChart} />
+              <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                open={showModal}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <ColorBreakdown pairing={chartPairing} probabilityFormat={probabilityFormat} genomeFormat={genomeFormat} closeModal={handleClose} />
+              </Modal>
             </div>
             <div className="swipeable">
               <Lookup
