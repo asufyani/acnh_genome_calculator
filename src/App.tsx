@@ -122,8 +122,6 @@ function App() {
           >
             <div className="swipeable">
               <Calculator
-                genomeFormat={genomeFormat}
-                probabilityFormat={probabilityFormat}
                 parent1={parent1}
                 parent2={parent2}
                 setParent1={setParent1}
@@ -147,7 +145,7 @@ function App() {
                   timeout: 500,
                 }}
               >
-                <ColorBreakdown pairing={chartPairing} probabilityFormat={probabilityFormat} genomeFormat={genomeFormat} closeModal={handleClose} />
+                <><ColorBreakdown pairing={chartPairing} probabilityFormat={probabilityFormat} genomeFormat={genomeFormat} closeModal={handleClose} /></>
               </Modal>
             </div>
             <div className="swipeable">

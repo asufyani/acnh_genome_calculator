@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, TextField, Button, makeStyles, createStyles } from '@material-ui/core';
-import { possibleGenomes } from './flowerUtils';
+import { possibleGenomes, possibleParents } from './flowerUtils';
 import { Pairing } from './types';
-import { Species, GenomeFormat, ProbabilityFormat } from './enums';
+import { Species } from './enums';
 import { SpeciesSelect } from './SpeciesSelect';
 
 
@@ -23,8 +23,6 @@ const useStyles = makeStyles((theme) => createStyles({
 }));
 
 interface CalculatorProps {
-  genomeFormat: GenomeFormat;
-  probabilityFormat: ProbabilityFormat;
   parent1: string;
   parent2: string;
   offspringFilter: string;
@@ -37,7 +35,7 @@ interface CalculatorProps {
   setSpecies: (arg0: Species) => void;
 }
 
-export const Calculator = ({ genomeFormat, probabilityFormat, parent1, parent2, offspringFilter, setParent1, setParent2, setOffspringFilter, setRes, setErr, species, setSpecies }: CalculatorProps) => {
+export const Calculator = ({ parent1, parent2, offspringFilter, setParent1, setParent2, setOffspringFilter, setRes, setErr, species, setSpecies }: CalculatorProps) => {
   const classes = useStyles();
 
   const handleSetSpecies = React.useCallback((species: Species) => {
@@ -47,7 +45,13 @@ export const Calculator = ({ genomeFormat, probabilityFormat, parent1, parent2, 
 
   const handleCalculate = React.useCallback((_event: React.MouseEvent): void => {
     setErr('');
-    const result = possibleGenomes(parent1, parent2, offspringFilter, species);
+    let result;
+    if (parent1 && parent2) {
+      result = possibleGenomes(parent1, parent2, offspringFilter, species);
+    }
+    else {
+      result = possibleParents(offspringFilter, species);
+    }
     if (result.error) {
       setErr(result.error.message);
       setRes([]);

@@ -37,6 +37,76 @@ const alphaAlleles: { [key in Species]: string[][] } = {
   windflower: [rpair, ['o', 'O'], wpair]
 }
 
+export function getParentsForGenome(childGenes: string[], species: Species) {
+  const parentGeneCombos = childGenes.map(gene => {
+    return(Object.keys(memoGeneCombos).filter(geneCombo => {
+      return _.some(memoGeneCombos[geneCombo], value  => {return value === gene}) 
+    }))
+  });
+  const { parent1, parent2 } = constructParentsFromCombos(parentGeneCombos, [[]], [[]]);
+  const parent1binary = parent1.map(genes => genes.join('_'));
+  const parent2binary = parent2.map(genes => genes.join('_'));
+  let exists: {[key: string]: number} = {};
+
+  let allPairings = [] as Pairing[];
+  parent1binary.forEach((item, idx) => {
+    const key =[parent1binary[idx], parent2binary[idx]].sort().join('x');
+    if (!exists[key]) {
+      exists[key]=1;
+      const { res } = possibleGenomes(parent1binary[idx], parent2binary[idx], '', species);
+      allPairings = allPairings.concat(res);
+    }
+  })
+  return allPairings;
+}
+
+export function possibleParents(children: string, species: Species): { res: Pairing[], error?: Error } {
+  const childrenGenes = parseGenomeSet(children, species);
+  let pairings = [] as Pairing[];
+  let exists: {[key: string]: number} = {};
+  childrenGenes.forEach(childGenes => {
+    const parentPairings = getParentsForGenome(childGenes, species)
+    parentPairings.forEach(pairing => {
+      const key = pairing.parents.sort().join('x');
+      if (!exists[key]) {
+        exists[key]=1;
+        pairings.push(pairing);
+      }
+    });
+  });
+  console.log(pairings.length)
+  return {
+    res: pairings,
+  };
+}
+
+function constructParentsFromCombos(combos: string[][], parent1: string[][], parent2: string[][]): {combos: string[][], parent1: string[][], parent2: string[][]} {
+  const nextPairs = combos.shift();
+  let outputParent1: string[][] = [];
+  let outputParent2: string[][] = [];
+  nextPairs?.forEach(pair => {
+    const half1 = pair.substr(0,2);
+    const half2 = pair.substr(2,2);
+
+    parent1.forEach(parent1member => {
+      outputParent1.push(parent1member.concat([half1]));
+    })
+    parent2.forEach(parent2member => {
+      outputParent2.push(parent2member.concat([half2]));
+    })
+  });
+  if (combos?.length===0) {
+    return {
+      combos,
+      parent1: outputParent1,
+      parent2: outputParent2,
+    }
+  }
+  else {
+    return constructParentsFromCombos(combos, outputParent1, outputParent2)
+  }
+}
+
 const flowers = data.default.flowers;
 const split_binary = /(?:[01]{2}(\S)){2,3}[01]{2}/;
 const condensed = /[\d]{3,4}/;

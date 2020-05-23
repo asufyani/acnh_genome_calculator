@@ -20,10 +20,10 @@ export const Scenario = ({ pairing, showChart }: ScenarioProps) => {
   const handleIconClick = () => {
     showChart(pairing);
   }
-  const headers = [parent1Data, parent2Data].map((parent) => {
+  const headers = [parent1Data, parent2Data].map((parent, idx) => {
     return {
       text: pickGenomeString(parent, genomeFormat),
-      key: parent.genome,
+      key: parent.genome+'-'+idx,
       backgroundColor: parent.backgroundColor
     }
   })

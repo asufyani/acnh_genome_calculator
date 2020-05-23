@@ -1,5 +1,5 @@
-import { getCondensedGenome, getAlphaGenome } from './flowerUtils';
-import { Species } from './types';
+import { getCondensedGenome, getAlphaGenome, getParentsForGenome } from './flowerUtils';
+import { Species } from './enums';
 
 test('getCondensedGenome', () => {
   const testCases =
@@ -23,3 +23,11 @@ test('getAlphaGenome', () => {
   testCases.forEach((testCase) => expect(getAlphaGenome(testCase[0] as Species, testCase[1])).toBe(testCase[2]));
   
 });
+
+test('getParentsForGenome', () => {
+  const testCases = 
+  [
+    ['11','11','11','00'],
+  ];
+  testCases.forEach((testCase) => console.log(getParentsForGenome(testCase, Species.rose)))
+})
