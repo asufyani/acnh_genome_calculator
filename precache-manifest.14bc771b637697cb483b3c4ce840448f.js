@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1fa1d774886b75f711b3156729064cbf",
+    "revision": "29a798d75aae0cad72ee38aa421f75bd",
     "url": "/acnh_genome_calculator/index.html"
   },
   {
-    "revision": "9c658b5bf647c1c7c901",
+    "revision": "b8816690b85842fb9019",
     "url": "/acnh_genome_calculator/static/css/main.d04fb750.chunk.css"
   },
   {
-    "revision": "49c4b1f49333451f2b60",
-    "url": "/acnh_genome_calculator/static/js/2.423e6254.chunk.js"
+    "revision": "a5f8481cd9975a0a9649",
+    "url": "/acnh_genome_calculator/static/js/2.a58940fb.chunk.js"
   },
   {
     "revision": "095637327dcea00717366af1c32b6a95",
-    "url": "/acnh_genome_calculator/static/js/2.423e6254.chunk.js.LICENSE.txt"
+    "url": "/acnh_genome_calculator/static/js/2.a58940fb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9c658b5bf647c1c7c901",
-    "url": "/acnh_genome_calculator/static/js/main.95d3e5e9.chunk.js"
+    "revision": "b8816690b85842fb9019",
+    "url": "/acnh_genome_calculator/static/js/main.7ea7d5ca.chunk.js"
   },
   {
     "revision": "26c3805bad76b5f1f535",
